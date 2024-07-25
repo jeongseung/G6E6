@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.GameSubmitController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.QuizSubmitController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="400.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
       <Text layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="문제 제출" textAlignment="CENTER" wrappingWidth="600.0">
