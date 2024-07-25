@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.QuizSubmitController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="400.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+      <Text layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="문제 제출" textAlignment="CENTER" wrappingWidth="600.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="quizTextArea" layoutX="150.0" layoutY="89.0" prefHeight="150.0" prefWidth="300.0" promptText="문제" />
+      <TextField fx:id="answerTextField" layoutX="150.0" layoutY="253.0" prefHeight="30.0" prefWidth="300.0" promptText="문제정답" />
+      <ChoiceBox fx:id="subjectChoiceBox" layoutX="150.0" layoutY="300.0" prefHeight="30.0" prefWidth="300.0" />
+      <Button fx:id="submitButton" layoutX="250.0" layoutY="345.0" mnemonicParsing="false" onAction="#submitQuiz" prefHeight="30.0" prefWidth="100.0" text="제출" />
+      </children>
+</AnchorPane>
