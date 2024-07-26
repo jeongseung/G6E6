@@ -13,12 +13,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sysone.g6e6.model.Quiz;
 import sysone.g6e6.model.Subject;
-import sysone.g6e6.service.QuizService;
-import sysone.g6e6.service.SubjectService;
+import sysone.g6e6.service.QuizSubmitService;
 
 public class QuizSubmitController implements Initializable {
-	private QuizService quizService = new QuizService();
-	private SubjectService subjectService = new SubjectService();
+	private QuizSubmitService quizSubmitService = new QuizSubmitService();
 	@FXML
 	private ChoiceBox<String> subjectChoiceBox;
 	@FXML
@@ -26,16 +24,13 @@ public class QuizSubmitController implements Initializable {
 	@FXML
 	private TextArea quizTextArea;
 
-	private List<String> subjectArray = new ArrayList<>();
-
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		List<String> subjectContentList = new ArrayList<>();
+		subjectChoiceBox.setValue("----분야 선택----");
 		try {
-			subjectService.getAllSubjects().forEach(subject -> {
-				subjectArray.add(subject.getContent());
-			});
-			subjectChoiceBox.getItems().addAll(subjectArray);
-			subjectChoiceBox.setValue("----분야 선택----");
+			subjectContentList = quizSubmitService.getAllSubjects();
+			subjectChoiceBox.getItems().addAll(subjectContentList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -44,8 +39,9 @@ public class QuizSubmitController implements Initializable {
 	@FXML
 	public void submitQuiz(ActionEvent event) {
 		try {
-			Subject subject = subjectService.getSubjectByContent(subjectChoiceBox.getValue());
-			Quiz quiz = quizService.createQuiz(subject.getId(), quizTextArea.getText(), answerTextField.getText());
+			Subject subject = quizSubmitService.getSubjectByContent(subjectChoiceBox.getValue());
+			Quiz quiz = quizSubmitService.createQuiz(subject.getId(), quizTextArea.getText(),
+				answerTextField.getText());
 			System.out.println("1 quiz created.\n" + quiz.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
