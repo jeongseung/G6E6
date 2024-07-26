@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.fxml.RankingPage">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#667799" height="323.0" layoutX="20.0" layoutY="52.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="280.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="155.0" layoutX="337.0" layoutY="52.0" stroke="#667799" strokeType="INSIDE" strokeWidth="3.0" width="231.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="155.0" layoutX="337.0" layoutY="220.0" stroke="#667799" strokeType="INSIDE" strokeWidth="3.0" width="231.0" />
+      <ScrollBar layoutX="280.0" layoutY="59.0" orientation="VERTICAL" prefHeight="308.0" prefWidth="15.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="36.0" layoutX="27.0" layoutY="59.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="246.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.7629976868629456" blue="0.11999999731779099" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5550697247911611">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="36.0" layoutX="27.0" layoutY="101.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.7098039388656616" green="0.7098039388656616" blue="0.7098039388656616" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5550697247911611">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="36.0" layoutX="27.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8666666746139526" green="0.658823549747467" blue="0.4627451002597809" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5550697247911611">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <ChoiceBox layoutX="355.0" layoutY="66.0" prefHeight="22.0" prefWidth="194.0" />
+      <Text layoutX="361.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="문제 유형" />
+      <ChoiceBox layoutX="356.0" layoutY="237.0" prefHeight="22.0" prefWidth="194.0" />
+      <Text layoutX="361.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="난이도" />
+      <Text layoutX="283.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="랭킹">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text layoutX="32.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text layoutX="33.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3." wrappingWidth="19.947265625">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
