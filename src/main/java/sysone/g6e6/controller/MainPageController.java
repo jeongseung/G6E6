@@ -91,66 +91,31 @@ public class MainPageController {
 	// 게임생성페이지로 이동
 	private void handleGoToSelectMode(ActionEvent event) {
 		FXUtil fx = FXUtil.getInstance();
-		FXMLLoader loader = fx.getLoader("게임생성Page.fxml");
-		Parent root = null;
-		try {
-			root = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		fx.changeScene(root);
+		fx.changeScene("게임생성Page");
 	}
 
 	// 문제 생성페이지로 이동
 	private void handleGoToQuizSubmit(ActionEvent event) {
 		FXUtil fx = FXUtil.getInstance();
-		FXMLLoader loader = fx.getLoader("QuizSubmitPage.fxml");
-		Parent root = null;
-		try {
-			root = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		fx.changeScene(root);
+		fx.changeScene("문제생성Page");
 	}
 
 	// 마이페이지로 이동
 	private void handleGoToMyPage(ActionEvent event) {
 		FXUtil fx = FXUtil.getInstance();
-		FXMLLoader loader = fx.getLoader("MyPage.fxml");
-		Parent root = null;
-		try {
-			root = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		fx.changeScene(root);
+		fx.changeScene("MyPage");
 	}
 
 	// 오답노트 페이지로 이동
 	private void handleGoToReviewNote(ActionEvent event) {
 		FXUtil fx = FXUtil.getInstance();
-		FXMLLoader loader = fx.getLoader("ReviewNotePage.fxml");
-		Parent root = null;
-		try {
-			root = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		fx.changeScene(root);
+		fx.changeScene("ReviewNotePage");
 	}
 
 	// 랭킹페이지로 이동
 	private void handleGoToRanking(ActionEvent event) {
 		FXUtil fx = FXUtil.getInstance();
-		FXMLLoader loader = fx.getLoader("RankingPage.fxml");
-		Parent root = null;
-		try {
-			root = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		fx.changeScene(root);
+		fx.changeScene("RankingPage");
 	}
 
 }
