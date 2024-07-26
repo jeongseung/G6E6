@@ -7,36 +7,36 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.fxml.Main">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.MainPageController">
    <children>
-      <Button fx:id="playButton" layoutX="81.0" layoutY="109.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="게임플레이" textAlignment="CENTER" textFill="#f2f5fd" />
-      <Button fx:id="SubmitButton" layoutX="81.0" layoutY="175.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="문제 제출" textAlignment="CENTER" textFill="#f2f5fd" />
-      <Button fx:id="myPageButton" layoutX="377.0" layoutY="109.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="마이페이지" textFill="#f2f5fd" />
-      <Button fx:id="mistakeButton" layoutX="377.0" layoutY="241.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="오답노트" textFill="#f2f5fd" />
-      <Button fx:id="rankingButton" layoutX="377.0" layoutY="175.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="랭킹" textFill="#f2f5fd" />
+      <Button layoutX="81.0" layoutY="109.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="게임플레이" textAlignment="CENTER" textFill="#f2f5fd" onAction="#handleGoToSelectMode" />
+      <Button layoutX="81.0" layoutY="175.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="문제 제출" textAlignment="CENTER" textFill="#f2f5fd" onAction="#handleGoToQuizSubmit" />
+      <Button layoutX="377.0" layoutY="109.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="마이페이지" textFill="#f2f5fd" onAction="#handleGoToMyPage" />
+      <Button layoutX="377.0" layoutY="241.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="오답노트" textFill="#f2f5fd" onAction="#handleGoToReviewNote" />
+      <Button layoutX="377.0" layoutY="175.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #667799;" text="랭킹" textFill="#f2f5fd" onAction="#handleGoToRanking" />
       <Text fill="#667799" layoutX="81.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="공지사항" wrappingWidth="60.0" />
        <HBox alignment="CENTER" spacing="10" />
         <Label fx:id="welcomeLabel" layoutX="427.0" layoutY="45.0" prefHeight="19.0" prefWidth="138.0" style="-fx-font-size: 16px;" text="환영합니다 " />
         <ImageView fx:id="profileImageView" fitHeight="50" fitWidth="50" layoutX="377.0" layoutY="30.0" style="-fx-background-radius: 25;" />
-      <Button alignment="TOP_LEFT" layoutX="81.0" layoutY="270.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="156.0" style="-fx-background-color: #F2F5FD; -fx-border-color: #667799;" text="1번 공지글" textAlignment="JUSTIFY" />
-      <Button alignment="TOP_LEFT" layoutX="81.0" layoutY="303.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="156.0" style="-fx-background-color: #F2F5FD; -fx-border-color: #667799;" text="2번 공지글" />
-      <Button alignment="TOP_LEFT" layoutX="81.0" layoutY="335.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="156.0" style="-fx-background-color: #F2F5FD; -fx-border-color: #667799;" text="3번 공지글" />
+      <Button fx:id="noticeButton1" alignment="TOP_LEFT" layoutX="81.0" layoutY="270.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="156.0" style="-fx-background-color: #F2F5FD; -fx-border-color: #667799;" text="1번 공지글" textAlignment="JUSTIFY" onAction="#handleNotice1" />
+      <Button fx:id="noticeButton2" alignment="TOP_LEFT" layoutX="81.0" layoutY="303.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="156.0" style="-fx-background-color: #F2F5FD; -fx-border-color: #667799;" text="2번 공지글" onAction="#handleNotice2"/>
+      <Button fx:id="noticeButton3" alignment="TOP_LEFT" layoutX="81.0" layoutY="335.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="156.0" style="-fx-background-color: #F2F5FD; -fx-border-color: #667799;" text="3번 공지글" onAction="#handleNotice3"/>
       <Group fx:id="noticeGroup1" layoutX="63.0" layoutY="55.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="289.0" layoutX="8.0" layoutY="2.0" stroke="#667799" strokeType="INSIDE" width="459.0" />
-            <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0" prefWidth="399.0" text="글내용" />
+            <Label fx:id="noticeLabel1" alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0" prefWidth="399.0" text="글내용" />
          </children>
       </Group>
        <Group fx:id="noticeGroup2" layoutX="63.0" layoutY="55.0" visible="false">
            <children>
                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="289.0" layoutX="8.0" layoutY="2.0" stroke="#667799" strokeType="INSIDE" width="459.0" />
-               <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0" prefWidth="399.0" text="글내용" />
+               <Label fx:id="noticeLabel2" alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0" prefWidth="399.0" text="글내용" />
            </children>
        </Group>
        <Group fx:id="noticeGroup3" layoutX="63.0" layoutY="55.0" visible="false">
            <children>
                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="289.0" layoutX="8.0" layoutY="2.0" stroke="#667799" strokeType="INSIDE" width="459.0" />
-               <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0" prefWidth="399.0" text="글내용" />
+               <Label fx:id="noticeLabel3" alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0" prefWidth="399.0" text="글내용" />
            </children>
        </Group>
    </children>
