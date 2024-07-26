@@ -173,4 +173,18 @@ public class FXUtil extends Application {
 		stage.setScene(scene);
 		stage.show();
 	}
+
+	public void changeScene(String fxmlName) {
+		FXUtil fx = FXUtil.getInstance();
+		FXMLLoader loader = fx.getLoader(fxmlName + ".fxml");
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
 }
