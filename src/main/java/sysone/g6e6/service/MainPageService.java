@@ -6,10 +6,10 @@ import java.util.List;
 import sysone.g6e6.model.Notification;
 import sysone.g6e6.repository.NotificationRepository;
 
-public class NotificationService {
+public class MainPageService {
 	private NotificationRepository notificationRepository;
 
-	public NotificationService() {
+	public MainPageService() {
 		this.notificationRepository = new NotificationRepository();
 	}
 
