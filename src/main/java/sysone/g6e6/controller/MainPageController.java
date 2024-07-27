@@ -1,15 +1,15 @@
 package sysone.g6e6.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
-
 import javafx.scene.Group;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import sysone.g6e6.model.Notification;
+import sysone.g6e6.service.MainPageService;
 import sysone.g6e6.util.FXUtil;
 
 public class MainPageController {
@@ -35,52 +35,53 @@ public class MainPageController {
 	@FXML
 	private Group noticeGroup3;
 
-	private NoticeService noticeService;
+	private MainPageService mainPageService;
+	private List<Notification> latestNotifications;
 
 	public MainPageController() {
-		this.noticeService = new NoticeService();
+		this.mainPageService = new MainPageService();
 
 	}
 
-	public void initialize() {
-		List<Notice> latestNotices = noticeService.getLatestNotices(3);
+	public void initialize() throws SQLException {
+		latestNotifications = mainPageService.getLatestNotifications(3);
 
-		if (latestNotices.size() > 0) {
-			noticeButton1.setText(latestNotices.get(0).getTitle());
+		if (latestNotifications.size() > 0) {
+			noticeButton1.setText(latestNotifications.get(0).getTitle());
 			noticeButton1.setVisible(true);
 		}
 
-		if (latestNotices.size() > 1) {
-			noticeButton2.setText(latestNotices.get(1).getTitle());
+		if (latestNotifications.size() > 1) {
+			noticeButton2.setText(latestNotifications.get(1).getTitle());
 			noticeButton2.setVisible(true);
 		}
 
-		if (latestNotices.size() > 2) {
-			noticeButton3.setText(latestNotices.get(2).getTitle());
+		if (latestNotifications.size() > 2) {
+			noticeButton3.setText(latestNotifications.get(2).getTitle());
 			noticeButton3.setVisible(true);
 		}
 	}
 
 	@FXML
 	public void handleNotice1(ActionEvent event) {
-		if (latestNotices.size > 0) {
-			noticeLabel1.setText(latestNotices.get(0).getContent());
+		if (latestNotifications.size() > 0) {
+			noticeLabel1.setText(latestNotifications.get(0).getContent());
 			noticeGroup1.setVisible(true);
 		}
 	}
 
 	@FXML
 	public void handleNotice2(ActionEvent event) {
-		if (latestNotices.size > 1) {
-			noticeLabel2.setText(latestNotices.get(1).getContent());
+		if (latestNotifications.size() > 1) {
+			noticeLabel2.setText(latestNotifications.get(1).getContent());
 			noticeGroup2.setVisible(true);
 		}
 	}
 
 	@FXML
 	public void handleNotice3(ActionEvent event) {
-		if (latestNotices.size > 2) {
-			noticeLabel3.setText(latestNotices.get(2).getContent());
+		if (latestNotifications.size() > 2) {
+			noticeLabel3.setText(latestNotifications.get(2).getContent());
 			noticeGroup3.setVisible(true);
 		}
 	}
