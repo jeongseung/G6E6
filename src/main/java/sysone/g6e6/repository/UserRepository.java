@@ -31,7 +31,7 @@ public class UserRepository {
 		ResultSet rs = ps.executeQuery();
 
 		if (rs.next()) {
-			int id = rs.getInt("ID");
+			int id = rs.getInt("USER_ID");
 			String nickname = rs.getString("NICKNAME");
 			String role = rs.getString("ROLE");
 

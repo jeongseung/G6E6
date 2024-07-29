@@ -19,7 +19,7 @@ public class LoginService {
 		User user = userRepository.findByEmailAndPassword(email, password);
 		if (user != null) {
 			UserSession.getInstance().setUser(user);
-			return "Login successful";
+			return "Login success";
 		} else {
 			return "Wrong password";
 		}
