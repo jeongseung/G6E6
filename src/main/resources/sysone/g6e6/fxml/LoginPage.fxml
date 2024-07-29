@@ -7,19 +7,19 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sysone.g6e6.fxml.LoginPage"
+            fx:controller="sysone.g6e6.controller.LoginController"
             prefHeight="400.0" prefWidth="600.0">
     <children>
         <Rectangle id="loginbox" arcHeight="5.0" arcWidth="5.0" fill="#667799" height="150.0" layoutX="178.0" layoutY="125.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="INSIDE" width="243.0" />
         <Rectangle id="idbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" layoutX="200.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
-        <Button id="loginbtn" layoutX="230.0" layoutY="230.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Login" />
+        <Button id="loginbtn" layoutX="230.0" layoutY="230.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Login" onAction="#handleLogin" />
         <Rectangle id="pwbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" layoutX="200.0" layoutY="183.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
-        <Button id="signupbtn" layoutX="310.0" layoutY="230.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Sign up" />
-        <TextField id="idtxt" layoutX="210.0" layoutY="148.0" prefHeight="22.0" prefWidth="180.0" promptText="아이디">
+        <Button id="signupbtn" layoutX="310.0" layoutY="230.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Sign up" onAction="#handleGoToSignUp" />
+        <TextField fx:id="emailField" id="idtxt" layoutX="210.0" layoutY="148.0" prefHeight="22.0" prefWidth="180.0" promptText="아이디">
             <font>
                 <Font name="LG Smart UI Light" size="12.0" />
             </font></TextField>
-        <TextField id="pwtxt" layoutX="210.0" layoutY="189.0" prefHeight="22.0" prefWidth="180.0" promptText="비밀번호" />
+        <PasswordField fx:id="passwordField" id="pwtxt" layoutX="210.0" layoutY="189.0" prefHeight="22.0" prefWidth="180.0" promptText="비밀번호" />
         <Text layoutX="233.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="날개를 펼쳐줘요 G6" textAlignment="CENTER">
             <font>
                 <Font name="LG Smart UI Regular" size="17.0" />
