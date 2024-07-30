@@ -3,17 +3,23 @@ package sysone.g6e6.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
-import javafx.event.ActionEvent;
+import sysone.g6e6.model.Mistake;
+import sysone.g6e6.model.PlayRecord;
 import sysone.g6e6.model.Quiz;
+import sysone.g6e6.repository.MistakeRepository;
+import sysone.g6e6.repository.PlayRecordRepository;
 import sysone.g6e6.repository.QuizRepository;
 
 public class GameScreenService {
 	private QuizRepository quizRepository = new QuizRepository();
+	private PlayRecordRepository playRecordRepository = new PlayRecordRepository();
+	private MistakeRepository mistakeRepository = new MistakeRepository();
+	private Quiz curQuiz;
 	private char[][] map = new char[16][16];
 	private List<int[]> h_visited = new ArrayList<>();
 	private List<int[]> v_visited = new ArrayList<>();
@@ -26,20 +32,33 @@ public class GameScreenService {
 	private List<Quiz> using_words;
 	private List<Quiz> wasted_words = new ArrayList<>();
 
-	public void createGame(int subjectId,int total_num) throws Exception {
+	private HashMap<String, List<?>> resultHashMap = new HashMap<>();
+	private List<int[]> resultVerticalCoord = new ArrayList<>();
+	private List<Quiz> resultVerticalQuiz = new ArrayList<>();
+	private List<int[]> resultHorizontalCoord = new ArrayList<>();
+	private List<Quiz> resultHorizontalQuiz = new ArrayList<>();
+
+	// 가로 퀴즈 : 좌표(int[][]), 답,문제(String[])
+	//
+
+	public HashMap<String, List<?>> createGame(int subjectId, int total_num) throws Exception {
 		quizzes = quizRepository.findBySubjectId(subjectId);
-		using_words=new ArrayList<>(quizzes);
-		quizzes.forEach(e-> System.out.println(e.toString()));
-		makeGame(total_num);
+		using_words = new ArrayList<>(quizzes);
+		this.total_num = total_num;
+		makeGame();
+		resultHashMap.put("세로좌표", resultVerticalCoord);
+		resultHashMap.put("세로퀴즈", resultVerticalQuiz);
+		resultHashMap.put("가로좌표", resultHorizontalCoord);
+		resultHashMap.put("가로퀴즈", resultHorizontalQuiz);
+		return resultHashMap;
 	}
 
-	public void makeGame(int total_num) {
-		this.total_num=total_num;
+	private void makeGame() {
 		Random rand = new Random(System.currentTimeMillis());
 		Collections.shuffle(quizzes);
-		int count_loop=1;
+		int count_loop = 1;
 		while ((h_num + v_num) < total_num) {
-			System.out.println(count_loop++);
+			// System.out.println(count_loop++);
 			// System.out.println(isVertical ? "세로" : "가로");
 			x = rand.nextInt(map.length);
 			y = rand.nextInt(map.length);
@@ -49,21 +68,42 @@ public class GameScreenService {
 				using_words.addAll(wasted_words);
 				wasted_words.clear();
 			}
-			System.out.println(using_words.size());
-			Quiz quiz = using_words.get(idx++);
-			System.out.println(quiz.toString());
-			String word = quiz.getAnswer();
+			// System.out.println(using_words.size());
+			curQuiz = using_words.get(idx++);
+			// System.out.println(curQuiz.toString());
+			String word = curQuiz.getAnswer();
 			// System.out.println(x + ", " + y);
 			// System.out.println(word);
+
 			if (isVertical) {
 				if ((x + word.length() - 1) >= map.length) {
-					wasted_words.add(quiz);
+					wasted_words.add(curQuiz);
+					count_loop++;
 					continue;
 				}
-				if (h_visited.isEmpty()) {
+				/// chk_pt
+				if (count_loop > 500) {
 					int[] point = {x, y};
 					if (containArr(v_visited, point)) {
-						wasted_words.add(quiz);
+						wasted_words.add(curQuiz);
+						count_loop++;
+						continue;
+					}
+					if (!checkMap(point, word, false, true)) {
+						wasted_words.add(curQuiz);
+						count_loop++;
+						continue;
+					}
+					insertMap(word, false);
+					h_num++;
+					isVertical = !isVertical;
+					count_loop = 0;
+					/// chk_pt
+				} else if (h_visited.isEmpty()) {
+					int[] point = {x, y};
+					if (containArr(v_visited, point)) {
+						wasted_words.add(curQuiz);
+						count_loop++;
 						continue;
 					}
 					// System.out.println("1. (" + x + ", " + y + ")에 " + word + "를 세로로 넣을거에요");
@@ -81,10 +121,12 @@ public class GameScreenService {
 							&& (a[0] + word.length() - 1) < map.length) {
 							if (containArr(v_visited, a)) {
 								// System.out.println(a[0] + ", " + a[1] + "은 이미 세로칸에도 존재해요");
+								count_loop++;
 								break;
 							}
-							if (!checkMap(a, word, false)) {
+							if (!checkMap(a, word, false, false)) {
 								// System.out.println("주변에 겹치는 문자가 존재해요");
+								count_loop++;
 								break;
 							}
 							// System.out.println("2. (" + a[0] + ", " + a[1] + ")에 " + word + "를 세로로 넣을거에요");
@@ -98,10 +140,12 @@ public class GameScreenService {
 						} else if (word.endsWith(String.valueOf(map[a[0]][a[1]])) && (a[0] - word.length() + 1) >= 0) {
 							if (containArr(v_visited, a)) {
 								// System.out.println(a[0] + ", " + a[1] + "은 이미 세로칸에도 존재해요");
+								count_loop++;
 								break;
 							}
-							if (!checkMap(a, word, true)) {
+							if (!checkMap(a, word, true, false)) {
 								// System.out.println("주변에 겹치는 문자가 존재해요");
+								count_loop++;
 								break;
 							}
 							// System.out.println("3. (" + a[0] + ", " + a[1] + ")에 " + word + "를 세로로 거꾸로 넣을거에요");
@@ -115,18 +159,38 @@ public class GameScreenService {
 						}
 					}
 					if (!inserted) {
-						wasted_words.add(quiz);
+						wasted_words.add(curQuiz);
 					}
 				}
 			} else {
 				if ((y + word.length() - 1) >= map.length) {
-					wasted_words.add(quiz);
+					wasted_words.add(curQuiz);
+					count_loop++;
 					continue;
 				}
-				if (v_visited.isEmpty()) {
+				/// chk_pt
+				if (count_loop > 500) {
+					int[] point = {x, y};
+					if (containArr(v_visited, point)) {
+						wasted_words.add(curQuiz);
+						count_loop++;
+						continue;
+					}
+					if (!checkMap(point, word, false, true)) {
+						wasted_words.add(curQuiz);
+						count_loop++;
+						continue;
+					}
+					insertMap(word, false);
+					h_num++;
+					isVertical = !isVertical;
+					count_loop = 0;
+					/// chk_pt
+				} else if (v_visited.isEmpty()) {
 					int[] point = {x, y};
 					if (containArr(h_visited, point)) {
-						wasted_words.add(quiz);
+						wasted_words.add(curQuiz);
+						count_loop++;
 						continue;
 					}
 					// System.out.println("4. (" + x + ", " + y + ")에 " + word + "를 가로로 넣을거에요");
@@ -144,10 +208,12 @@ public class GameScreenService {
 							&& (a[1] + word.length() - 1) < map.length) {
 							if (containArr(h_visited, a)) {
 								// System.out.println(a[0] + ", " + a[1] + "은 이미 가로칸에도 존재해요");
+								count_loop++;
 								break;
 							}
-							if (!checkMap(a, word, false)) {
+							if (!checkMap(a, word, false, false)) {
 								// System.out.println("주변에 겹치는 문자가 존재해요");
+								count_loop++;
 								break;
 							}
 							// System.out.println("5. (" + a[0] + ", " + a[1] + ")에 " + word + "를 가로로 넣을거에요");
@@ -161,10 +227,12 @@ public class GameScreenService {
 						} else if (word.endsWith(String.valueOf(map[a[0]][a[1]])) && (a[1] - word.length() + 1) >= 0) {
 							if (containArr(h_visited, a)) {
 								// System.out.println(a[0] + ", " + (a[1]) + "은 이미 가로칸에도 존재해요");
+								count_loop++;
 								break;
 							}
-							if (!checkMap(a, word, true)) {
+							if (!checkMap(a, word, true, false)) {
 								// System.out.println("주변에 겹치는 문자가 존재해요");
+								count_loop++;
 								break;
 							}
 							// System.out.println("6. (" + a[0] + ", " + a[1] + ")에 " + word + "를 가로로 거꾸로 넣을거에요");
@@ -178,7 +246,7 @@ public class GameScreenService {
 						}
 					}
 					if (!inserted) {
-						wasted_words.add(quiz);
+						wasted_words.add(curQuiz);
 					}
 				}
 			}
@@ -186,7 +254,7 @@ public class GameScreenService {
 		showMap(map);
 	}
 
-	public void showVisited(boolean isV) {
+	private void showVisited(boolean isV) {
 		List<int[]> visited;
 		visited = isV ? v_visited : h_visited;
 		for (int[] cord : visited) {
@@ -195,9 +263,17 @@ public class GameScreenService {
 		// System.out.println();
 	}
 
-	public boolean checkMap(int[] start_cord, String word, boolean isReverse) {
+	private boolean checkMap(int[] start_cord, String word, boolean isReverse, boolean resolveLoop) {
 		// System.out.println(word+start_cord[0]+", "+start_cord[1]);
+
 		List<int[]> cord_map = new ArrayList<>();
+		cord_map.add(
+			new int[] {start_cord[0] + (!isVertical ? 0 : isReverse ? 1 : -1),
+				start_cord[1] + (isVertical ? 0 : isReverse ? 1 : -1)});
+		cord_map.add(
+			new int[] {
+				start_cord[0] + word.length() * (!isVertical ? 0 : isReverse ? -1 : 1),
+				start_cord[1] + word.length() * (isVertical ? 0 : isReverse ? -1 : 1)});
 		int len = word.length();
 		if (isReverse) {
 			StringBuffer sb = new StringBuffer(word);
@@ -205,7 +281,8 @@ public class GameScreenService {
 		}
 		if (isVertical) {
 			if (!isReverse) {
-				for (int n = 1; n < len; n++) {
+				// for (int n = resolveLoop ? 0 : 1; n < len; n++) {
+				for (int n = 0; n < len; n++) {
 					if (map[start_cord[0] + n][start_cord[1]] != word.charAt(n)) {
 						cord_map.add(new int[] {start_cord[0] + n, start_cord[1] + 1});
 						cord_map.add(new int[] {start_cord[0] + n, start_cord[1]});
@@ -213,7 +290,8 @@ public class GameScreenService {
 					}
 				}
 			} else {
-				for (int n = 1; n < len; n++) {
+				// for (int n = resolveLoop ? 0 : 1; n < len; n++) {
+				for (int n = 0; n < len; n++) {
 					if (map[start_cord[0] - n][start_cord[1]] != word.charAt(n)) {
 						cord_map.add(new int[] {start_cord[0] - n, start_cord[1] + 1});
 						cord_map.add(new int[] {start_cord[0] - n, start_cord[1]});
@@ -223,7 +301,8 @@ public class GameScreenService {
 			}
 		} else {
 			if (!isReverse) {
-				for (int n = 1; n < len; n++) {
+				// for (int n = resolveLoop ? 0 : 1; n < len; n++) {
+				for (int n = 0; n < len; n++) {
 					if (map[start_cord[0]][start_cord[1] + n] != word.charAt(n)) {
 						cord_map.add(new int[] {start_cord[0] + 1, start_cord[1] + n});
 						cord_map.add(new int[] {start_cord[0], start_cord[1] + n});
@@ -231,7 +310,8 @@ public class GameScreenService {
 					}
 				}
 			} else {
-				for (int n = 1; n < len; n++) {
+				// for (int n = resolveLoop ? 0 : 1; n < len; n++) {
+				for (int n = 0; n < len; n++) {
 					if (map[start_cord[0]][start_cord[1] - n] != word.charAt(n)) {
 						cord_map.add(new int[] {start_cord[0] + 1, start_cord[1] - n});
 						cord_map.add(new int[] {start_cord[0], start_cord[1] - n});
@@ -241,17 +321,24 @@ public class GameScreenService {
 			}
 		}
 		for (int[] cord : cord_map) {
+			if (resolveLoop) {
+				// System.out.println(cord[0] + ", " + cord[1]);
+			}
 			if (containArr(v_visited, cord) || containArr(h_visited, cord)) {
 				return false;
 			}
 		}
+		if (resolveLoop) {
+			// System.out.println("flag : "+word);
+		}
 		return true;
 	}
 
-	public void insertMap(String word, boolean isReverse) {
+	private void insertMap(String word, boolean isReverse) {
 		String flag = (isVertical ? "V :" : "H :") + word;
 		StringBuffer sb = new StringBuffer(word);
 		word = isReverse ? sb.reverse().toString() : word;
+
 		if (!isVertical) {
 			int j = y;
 			for (char s : word.toCharArray()) {
@@ -262,6 +349,9 @@ public class GameScreenService {
 					map[x][j++] = s;
 				}
 			}
+			resultHorizontalCoord.add(new int[] {x, isReverse ? j + 1 : y});
+			resultHorizontalQuiz.add(curQuiz);
+
 		} else {
 			int i = x;
 			for (char s : word.toCharArray()) {
@@ -273,11 +363,14 @@ public class GameScreenService {
 					map[i++][y] = s;
 				}
 			}
+			resultVerticalCoord.add(new int[] {isReverse ? i + 1 : x, y});
+			resultVerticalQuiz.add(curQuiz);
 		}
+		// System.out.println(h_num + v_num);
 		showMap(map);
 	}
 
-	public boolean containArr(List<int[]> visited, int[] a) {
+	private boolean containArr(List<int[]> visited, int[] a) {
 		boolean contains = false;
 		for (int[] array : visited) {
 			if (Arrays.equals(array, a)) {
@@ -288,7 +381,7 @@ public class GameScreenService {
 		return contains;
 	}
 
-	public void showMap(char[][] map) {
+	private void showMap(char[][] map) {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map.length; j++) {
 				if (map[i][j] == 0) {
@@ -305,4 +398,19 @@ public class GameScreenService {
 		showVisited(false);
 	}
 
+	public PlayRecord createPlayRecord(int userId, int subjectId, String difficulty, int solveTime) throws
+		Exception {
+		PlayRecord playRecord = new PlayRecord(null, userId, subjectId, difficulty, solveTime);
+		playRecord = playRecordRepository.save(playRecord);
+		return playRecord;
+	}
+
+	public List<Mistake> createMistakes(List<Quiz> mistakeQuiz, int userId, int subjectId) throws Exception {
+		List<Mistake> mistakes = new ArrayList<>();
+		for (Quiz quiz : mistakeQuiz) {
+			Mistake mistake = new Mistake(null, quiz.getId(), userId, subjectId, null);
+			mistakes.add(mistakeRepository.save(mistake));
+		}
+		return mistakes;
+	}
 }
