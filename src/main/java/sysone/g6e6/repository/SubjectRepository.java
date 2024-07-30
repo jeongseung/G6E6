@@ -3,7 +3,6 @@ package sysone.g6e6.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +28,9 @@ public class SubjectRepository {
 		PreparedStatement pstmt = conn.prepareStatement("select * from subjects where subject_content = ?");
 		pstmt.setString(1, content);
 		ResultSet rs = pstmt.executeQuery();
-		rs.next();
-		subject = new Subject(rs.getInt(1), rs.getString(2));
+		if (rs.next()) {
+			subject = new Subject(rs.getInt(1), rs.getString(2));
+		}
 		return subject;
 	}
 }
