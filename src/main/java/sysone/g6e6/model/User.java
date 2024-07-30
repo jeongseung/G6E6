@@ -6,13 +6,15 @@ public class User {
 	private String password;
 	private String nickname;
 	private String role;
+	private String salt;
 
-	public User(Integer id, String email, String password, String nickname, String role) {
+	public User(Integer id, String email, String password, String nickname, String role, String salt) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.nickname = nickname;
 		this.role = role;
+		this.salt = salt;
 	}
 
 	public Integer getId() {
@@ -55,6 +57,14 @@ public class User {
 		this.role = role;
 	}
 
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.role = salt;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
@@ -63,6 +73,7 @@ public class User {
 			", password='" + password + '\'' +
 			", nickname='" + nickname + '\'' +
 			", role='" + role + '\'' +
+			", salt='" + salt + '\'' +
 			'}';
 	}
 }
