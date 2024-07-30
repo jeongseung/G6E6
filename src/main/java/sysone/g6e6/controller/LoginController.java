@@ -42,7 +42,7 @@ public class LoginController {
 	@FXML
 	private void handleGoToSignUp() {
 		FXUtil fx = FXUtil.getInstance();
-		fx.changeScene("SignUp");
+		fx.changeScene("SignUpPage");
 	}
 
 	// 알림 보여주기
