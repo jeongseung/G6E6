@@ -8,12 +8,17 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import sysone.g6e6.model.Notification;
+import sysone.g6e6.model.User;
 import sysone.g6e6.service.MainPageService;
 import sysone.g6e6.util.FXUtil;
+import sysone.g6e6.util.UserSession;
 
 public class MainPageController {
 
+	@FXML
+	private Text noNotiText;
 	@FXML
 	private Label welcomeLabel;
 	@FXML
@@ -44,10 +49,15 @@ public class MainPageController {
 	}
 
 	public void initialize() throws SQLException {
+		User user = UserSession.getInstance().getUser();
+		String nickname = user.getNickname();
+		welcomeLabel.setText("환영합니다 " + nickname + "님");
+
 		latestNotifications = mainPageService.getLatestNotifications(3);
 
 		if (latestNotifications.size() > 0) {
 			noticeButton1.setText(latestNotifications.get(0).getTitle());
+			noNotiText.setVisible(false);
 			noticeButton1.setVisible(true);
 		}
 
@@ -86,23 +96,18 @@ public class MainPageController {
 		}
 	}
 
-	// 유저 닉네임을 설정하는 메서드
-	public void setUserNickname(String nickname) {
-		welcomeLabel.setText("환영합니다 " + nickname + "님");
-	}
-
 	// 게임생성페이지로 이동
 	@FXML
 	public void handleGoToSelectMode(ActionEvent event) {
 		FXUtil fx = FXUtil.getInstance();
-		fx.changeScene("게임생성Page");
+		fx.changeScene("GameCreatePage");
 	}
 
 	// 문제 생성페이지로 이동
 	@FXML
 	public void handleGoToQuizSubmit(ActionEvent event) {
 		FXUtil fx = FXUtil.getInstance();
-		fx.changeScene("문제생성Page");
+		fx.changeScene("QuizSubmitPage");
 	}
 
 	// 마이페이지로 이동
