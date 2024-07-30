@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane fx:id="childAnchorPane" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #B0C4DE;"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sysone.g6e6.controller.GameScreenChildController">
+    <children>
+        <!--        <Label fx:id="idxLabel" prefHeight="14.0" prefWidth="200.0" text="Label"/>-->
+        <!--        <Label fx:id="problemLabel" layoutY="14.0" prefHeight="37.0" prefWidth="200.0" text="Label"/>-->
+    </children>
+</AnchorPane>
