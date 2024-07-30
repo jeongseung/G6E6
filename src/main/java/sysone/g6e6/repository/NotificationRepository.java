@@ -28,7 +28,7 @@ public class NotificationRepository {
 	public List<Notification> getLatestNotifications(int cnt) throws SQLException {
 		List<Notification> notifications = new ArrayList<>();
 		PreparedStatement ps = conn.prepareStatement(
-			"SELECT * FROM(SELECT * FROM NOTIfICATIONS ORDER BY DATE DESC) WHERE ROWNUM <= 3");
+			"SELECT * FROM(SELECT * FROM NOTIfICATIONS ORDER BY NOTIFICATION_DATE DESC) WHERE ROWNUM <= ?");
 		ps.setInt(1, cnt);
 		ResultSet rs = ps.executeQuery();
 
