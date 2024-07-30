@@ -13,14 +13,16 @@ public class ReviewNoteRepository {
 
     public List<Quiz> findAllQuizByUserId(int id) throws Exception{
         List<Quiz> quizzes = new ArrayList<>();
-        String sql = "select q.quiz_id, q.subject_id, q.problem, q.answer " +
-                "from mistakes m " +
-                "inner join quizzes q on m.quiz_id = q.quiz_id " +
-                "where m.user_id = ? " +
-                "and q.quiz_id not in ( " +
-                "    select e.quiz_id " +
-                "    from errorreports e " +
-                "    where e.quiz_id is not null " +
+        String sql = "SELECT * " +
+                "FROM quizzes " +
+                "WHERE quiz_id IN ( " +
+                "    SELECT quiz_id " +
+                "    FROM mistakes " +
+                "    WHERE user_id = ? " +
+                ") " +
+                "AND quiz_id NOT IN ( " +
+                "    SELECT quiz_id " +
+                "    FROM errorreports " +
                 ")";
         PreparedStatement pstmt = conn.prepareStatement(sql);
 
