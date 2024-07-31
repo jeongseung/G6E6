@@ -21,6 +21,7 @@ public class SignUpController {
 
 	private SignUpService signUpService;
 	private boolean isEmailChecked = false;
+	private boolean isNicknameChecked = false;
 
 	public SignUpController() {
 		this.signUpService = new SignUpService();
@@ -29,6 +30,7 @@ public class SignUpController {
 	@FXML
 	private void initialize() {
 		emailField.textProperty().addListener((observable, oldValue, newValue) -> isEmailChecked = false);
+		nicknameField.textProperty().addListener((observable, oldValue, newValue) -> isNicknameChecked = false);
 	}
 
 	// 이메일 중복 확인
@@ -44,6 +46,17 @@ public class SignUpController {
 	}
 
 	@FXML
+	private void handleNicknameCheck(ActionEvent event) throws SQLException {
+		String nickname = nicknameField.getText();
+		if (signUpService.isEmailDuplicate(nickname)) {
+			showAlert(Alert.AlertType.ERROR, "중복 확인", "사용 중인 닉네임입니다.");
+		} else {
+			showAlert(Alert.AlertType.INFORMATION, "중복 확인", "사용 가능한 닉네임입니다.");
+			isNicknameChecked = true;
+		}
+	}
+
+	@FXML
 	private void handleSignUp(ActionEvent event) throws SQLException {
 		String email = emailField.getText();
 		String password = passwordField.getText();
@@ -51,8 +64,13 @@ public class SignUpController {
 		String confirmPassword = confirmPasswordField.getText();
 		String role = "user";
 
-		if (isEmailChecked) {
+		if (!isEmailChecked) {
 			showAlert(Alert.AlertType.ERROR, "회원가입 실패", "이메일 중복 확인 해주세요");
+			return;
+		}
+
+		if (!isNicknameChecked) {
+			showAlert(Alert.AlertType.ERROR, "회원가입 실패", "닉네임 중복 확인 해주세요");
 			return;
 		}
 
