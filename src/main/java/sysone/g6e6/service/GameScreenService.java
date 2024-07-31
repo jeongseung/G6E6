@@ -14,11 +14,14 @@ import sysone.g6e6.model.Quiz;
 import sysone.g6e6.repository.MistakeRepository;
 import sysone.g6e6.repository.PlayRecordRepository;
 import sysone.g6e6.repository.QuizRepository;
+import sysone.g6e6.repository.ReviewNoteRepository;
 
 public class GameScreenService {
 	private QuizRepository quizRepository = new QuizRepository();
 	private PlayRecordRepository playRecordRepository = new PlayRecordRepository();
 	private MistakeRepository mistakeRepository = new MistakeRepository();
+	private ReviewNoteRepository reviewNoteRepository = new ReviewNoteRepository();
+
 	private Quiz curQuiz;
 	private char[][] map = new char[16][16];
 	private List<int[]> h_visited = new ArrayList<>();
@@ -45,7 +48,7 @@ public class GameScreenService {
 		quizzes = quizRepository.findBySubjectId(subjectId);
 		using_words = new ArrayList<>(quizzes);
 		this.total_num = total_num;
-		makeGame();
+		createMap();
 		resultHashMap.put("세로좌표", resultVerticalCoord);
 		resultHashMap.put("세로퀴즈", resultVerticalQuiz);
 		resultHashMap.put("가로좌표", resultHorizontalCoord);
@@ -53,7 +56,7 @@ public class GameScreenService {
 		return resultHashMap;
 	}
 
-	private void makeGame() {
+	private void createMap() {
 		Random rand = new Random(System.currentTimeMillis());
 		Collections.shuffle(quizzes);
 		int count_loop = 1;
@@ -398,7 +401,7 @@ public class GameScreenService {
 		showVisited(false);
 	}
 
-	public PlayRecord createPlayRecord(int userId, int subjectId, String difficulty, int solveTime) throws
+	public PlayRecord createPlayRecord(int userId, int subjectId, String difficulty, double solveTime) throws
 		Exception {
 		PlayRecord playRecord = new PlayRecord(null, userId, subjectId, difficulty, solveTime);
 		playRecord = playRecordRepository.save(playRecord);
@@ -412,5 +415,9 @@ public class GameScreenService {
 			mistakes.add(mistakeRepository.save(mistake));
 		}
 		return mistakes;
+	}
+
+	public void reportError(int userId, int quizId) throws Exception {
+		reviewNoteRepository.saveErrorReports(userId, quizId);
 	}
 }

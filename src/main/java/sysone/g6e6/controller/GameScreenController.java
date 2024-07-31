@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -28,14 +30,6 @@ import sysone.g6e6.util.FXUtil;
 import sysone.g6e6.util.UserSession;
 
 public class GameScreenController {
-	/*
-	TODO:
-	오답시  땡 레이블안뜨는거 수정
-	다 맞출시 화면 보이고 db넘기는거 추가
-	일시정지에서 뜰 화면 고민해보기
-	로직수정(가로)_
-	음향효과 넣기
-	 */
 	@FXML
 	private GridPane gameGridPane;
 	@FXML
@@ -43,9 +37,9 @@ public class GameScreenController {
 	@FXML
 	private AnchorPane baseAnchorPane, vQuizAnchorPane, hQuizAnchorPane;
 	@FXML
-	private Label announcementLabel, timerLabel, endInfoLabel, pauseInfoLabel, clearTimeLabel, accuracyLabel;
+	private Label subjectTitleLabel, announcementLabel, timerLabel, endInfoLabel, pauseInfoLabel, clearTimeLabel, accuracyLabel;
 	@FXML
-	private StackPane startStackPane, endStackPane, pauseStackPane;
+	private StackPane reportedStackPane, endStackPane, pauseStackPane;
 
 	private SubjectRepository subjectRepository = new SubjectRepository();
 	private String subject_name, diff;
@@ -68,9 +62,12 @@ public class GameScreenController {
 		this.subject_name = subject_name;
 		this.diff = diff;
 		total_num = (diff == "쉬움" ? 6 : diff == "보통" ? 12 : 25);
-		baseAnchorPane.getChildren().removeAll(announcementLabel, startStackPane, endStackPane, pauseStackPane);
+		baseAnchorPane.getChildren().removeAll(announcementLabel, reportedStackPane, endStackPane, pauseStackPane);
 		gameGridPane.setStyle("-fx-background-color:Skyblue");
 		try {
+			subjectTitleLabel.setText(subject_name);
+			subjectTitleLabel.setMinWidth(Label.USE_PREF_SIZE);
+			subjectTitleLabel.setMaxWidth(Label.USE_PREF_SIZE);
 			Subject subject = subjectRepository.findByContent(subject_name);
 			subject_id = subject.getId();
 			HashMap<String, List<?>> result = gameScreenService.createGame(subject_id, total_num);
@@ -82,10 +79,10 @@ public class GameScreenController {
 			createMap(hQuiz, hCoord, false);
 
 			timeline = new Timeline(
-				new KeyFrame(Duration.seconds(1), e -> updateTimer())
+				new KeyFrame(Duration.millis(10), e -> updateTimer())
 			);
 			timeline.setCycleCount(Timeline.INDEFINITE);
-			timerLabel.setText("00:00:00");
+			timerLabel.setText("00:00:00.00");
 			startTimer();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -127,7 +124,6 @@ public class GameScreenController {
 			GameScreenChildController gsc = loader.getController();
 			gsc.init(number, problem, isVertical);
 			childBlock.setOnMouseClicked(e -> {
-				System.out.println("clicked");
 				handleBlockOnClick(e, childBlock, number, isVertical);
 			});
 			double childHeight = gsc.getAnchorPaneHeight();
@@ -218,6 +214,7 @@ public class GameScreenController {
 			showAnnounce(announcement, ann_typ);
 			guessTextField.setText("");
 		} else {
+			pauseTimer();
 			showResult();
 		}
 	}
@@ -284,12 +281,12 @@ public class GameScreenController {
 	}
 
 	private void updateTimer() {
-		elapsedTime++; // 경과 시간 1초 증가
-
+		elapsedTime += 10; // 경과 시간 1초 증가
+		long elapsedSeconds = elapsedTime / 1000;
 		// 경과 시간 초를 시:분:초 형식으로 변환
-		long hours = elapsedTime / 3600;
-		long minutes = (elapsedTime % 3600) / 60;
-		long seconds = elapsedTime % 60;
+		long hours = elapsedSeconds / 3600;
+		long minutes = (elapsedSeconds % 3600) / 60;
+		long seconds = elapsedSeconds % 60;
 
 		String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 		timerLabel.setText(timeString);
@@ -302,7 +299,6 @@ public class GameScreenController {
 		}
 	}
 
-	@FXML
 	public void resumeTimer() {
 		if (timeline != null && isPaused) {
 			timeline.play();
@@ -310,7 +306,34 @@ public class GameScreenController {
 		}
 	}
 
-	// 일시정지 버튼
+	@FXML
+	public void handleReportButton(ActionEvent e) {
+		try {
+			if (curQuiz != null) {
+				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+				alert.setTitle("신고하기");
+				alert.setHeaderText(null);
+				alert.setContentText((curBool ? "세로" + (vQuiz.indexOf(curQuiz) + 1) + "번 문제를 " :
+					"가로" + (hQuiz.indexOf(curQuiz) + 1) + "번 문제를 ") + "신고하시겠습니까?");
+				if (alert.showAndWait().get() == ButtonType.OK) {
+					pauseTimer();
+					if (UserSession.getInstance().getUser() == null) {
+						gameScreenService.reportError(1, curQuiz.getId());
+					} else {
+						gameScreenService.reportError(UserSession.getInstance().getUser().getId(), curQuiz.getId());
+					}
+					baseAnchorPane.getChildren().remove(announcementLabel);
+					baseAnchorPane.getChildren().add(reportedStackPane);
+					reportedStackPane.setVisible(true);
+				}
+			} else {
+				showAnnounce("신고하고 싶은 문제를 선택 후\n다시 눌려주세요.");
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
 	@FXML
 	public void handlePauseButton(ActionEvent e) {
 		baseAnchorPane.getChildren().add(pauseStackPane);
@@ -331,10 +354,11 @@ public class GameScreenController {
 	}
 
 	private void showResult() {
+		baseAnchorPane.getChildren().remove(announcementLabel);
 		baseAnchorPane.getChildren().add(endStackPane);
 		endInfoLabel.setText("종목 : " + subject_name + "\n" + "난이도 : " + diff);
 		endInfoLabel.setStyle("-fx-text-align : center; -fx-font-size : 15");
-		clearTimeLabel.setText("\n" + timerLabel.getText());
+		clearTimeLabel.setText("\n" + timerLabel.getText() + "." + (elapsedTime % 1000) / 10);
 		clearTimeLabel.setStyle("-fx-align : center; -fx-font-size : 15");
 		accuracyLabel.setText("\n정확도 : " + String.format("%.2f", (((double)correctCount / tryCount) * 100.)) + "%");
 		accuracyLabel.setStyle("-fx-align : center; -fx-font-size : 15");
@@ -344,11 +368,11 @@ public class GameScreenController {
 			if (UserSession.getInstance().getUser() != null) {
 				gameScreenService.createMistakes(mistakeQuiz, UserSession.getInstance().getUser().getId(), subject_id);
 				gameScreenService.createPlayRecord(UserSession.getInstance().getUser().getId(), subject_id, diff,
-					elapsedTime);
+					(elapsedTime / 1000.));
 			} else {
 				gameScreenService.createMistakes(mistakeQuiz, 1, subject_id);
 				gameScreenService.createPlayRecord(1, subject_id, diff,
-					elapsedTime);
+					elapsedTime / 1000.);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
