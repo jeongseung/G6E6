@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import sysone.g6e6.model.User;
 import sysone.g6e6.service.LoginService;
 import sysone.g6e6.util.FXUtil;
+import sysone.g6e6.util.UserSession;
 
 public class LoginController {
 
@@ -16,6 +18,7 @@ public class LoginController {
 	private TextField passwordField;
 
 	private LoginService loginService;
+
 	public LoginController() {
 		this.loginService = new LoginService();
 	}
@@ -32,7 +35,10 @@ public class LoginController {
 			showAlert(Alert.AlertType.INFORMATION, "로그인 성공", "성공적으로 로그인했습니다!");
 			// System.out.println("로그인 성공");
 			FXUtil fx = FXUtil.getInstance();
-			fx.changeScene("MainPage");
+			User user = UserSession.getInstance().getUser();
+			String role = user.getRole();
+			System.out.println(role);
+			fx.changeScene(role.equals("admin") ? "AdminMainPage" : "MainPage");
 		} else {
 			showAlert(Alert.AlertType.ERROR, "로그인 실패", message);
 		}

@@ -11,12 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import sysone.g6e6.model.Notification;
 import sysone.g6e6.model.User;
-import sysone.g6e6.service.MainPageService;
+import sysone.g6e6.service.AdminMainService;
 import sysone.g6e6.util.FXUtil;
 import sysone.g6e6.util.UserSession;
 
-public class MainPageController {
-
+public class AdminMainController {
 	@FXML
 	private Text noNotiText;
 	@FXML
@@ -40,12 +39,11 @@ public class MainPageController {
 	@FXML
 	private Group noticeGroup3;
 
-	private MainPageService mainPageService;
+	private AdminMainService adminMainService;
 	private List<Notification> latestNotifications;
 
-	public MainPageController() {
-		this.mainPageService = new MainPageService();
-
+	public AdminMainController() {
+		this.adminMainService = new AdminMainService();
 	}
 
 	public void initialize() throws SQLException {
@@ -53,7 +51,7 @@ public class MainPageController {
 		String nickname = user.getNickname();
 		welcomeLabel.setText("환영합니다 " + nickname + "님");
 
-		latestNotifications = mainPageService.getLatestNotifications(3);
+		latestNotifications = adminMainService.getLatestNotifications(3);
 
 		if (latestNotifications.size() > 0) {
 			noticeButton1.setText(latestNotifications.get(0).getTitle());
@@ -70,6 +68,23 @@ public class MainPageController {
 			noticeButton3.setText(latestNotifications.get(2).getTitle());
 			noticeButton3.setVisible(true);
 		}
+	}
+
+	FXUtil fx = FXUtil.getInstance();
+
+	@FXML
+	public void handleGoToCreateNotification(ActionEvent event) {
+		fx.changeScene("NotificationCreatePage");
+	}
+
+	@FXML
+	public void handleGoToErrorReports(ActionEvent event) {
+		fx.changeScene("ErrorReportPage");
+	}
+
+	@FXML
+	public void handleGoToManageSubject(ActionEvent event) {
+		fx.changeScene("SubjectManagePage");
 	}
 
 	@FXML
@@ -94,41 +109,6 @@ public class MainPageController {
 			noticeLabel3.setText(latestNotifications.get(2).getContent());
 			noticeGroup3.setVisible(true);
 		}
-	}
-
-	// 게임생성페이지로 이동
-	@FXML
-	public void handleGoToSelectMode(ActionEvent event) {
-		FXUtil fx = FXUtil.getInstance();
-		fx.changeScene("GameCreatePage");
-	}
-
-	// 문제 생성페이지로 이동
-	@FXML
-	public void handleGoToQuizSubmit(ActionEvent event) {
-		FXUtil fx = FXUtil.getInstance();
-		fx.changeScene("QuizSubmitPage");
-	}
-
-	// 마이페이지로 이동
-	@FXML
-	public void handleGoToMyPage(ActionEvent event) {
-		FXUtil fx = FXUtil.getInstance();
-		fx.changeScene("MyPage");
-	}
-
-	// 오답노트 페이지로 이동
-	@FXML
-	public void handleGoToReviewNote(ActionEvent event) {
-		FXUtil fx = FXUtil.getInstance();
-		fx.changeScene("ReviewNotePage");
-	}
-
-	// 랭킹페이지로 이동
-	@FXML
-	public void handleGoToRanking(ActionEvent event) {
-		FXUtil fx = FXUtil.getInstance();
-		fx.changeScene("RankingPage");
 	}
 
 }
