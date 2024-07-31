@@ -7,10 +7,10 @@ public class PlayRecord {
 	private int userId;
 	private int subjectId;
 	private String difficulty;
-	private int solveTime;
+	private double solveTime;
 	private LocalDateTime playDate;
 
-	public PlayRecord(Integer id, int userId, int subjectId, String difficulty, int solveTime) {
+	public PlayRecord(Integer id, int userId, int subjectId, String difficulty, double solveTime) {
 		this.id = id;
 		this.userId = userId;
 		this.subjectId = subjectId;
@@ -18,7 +18,7 @@ public class PlayRecord {
 		this.solveTime = solveTime;
 	}
 
-	public PlayRecord(Integer id, int userId, int subjectId, String difficulty, int solveTime,
+	public PlayRecord(Integer id, int userId, int subjectId, String difficulty, double solveTime,
 		LocalDateTime playDate) {
 		this.id = id;
 		this.userId = userId;
@@ -72,7 +72,7 @@ public class PlayRecord {
 		this.difficulty = difficulty;
 	}
 
-	public int getSolveTime() {
+	public double getSolveTime() {
 		return solveTime;
 	}
 
