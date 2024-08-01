@@ -1,10 +1,13 @@
 package sysone.g6e6.controller;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +18,7 @@ import sysone.g6e6.service.MainPageService;
 import sysone.g6e6.util.FXUtil;
 import sysone.g6e6.util.UserSession;
 
-public class MainPageController {
+public class MainPageController implements Initializable {
 
 	@FXML
 	private Text noNotiText;
@@ -40,7 +43,8 @@ public class MainPageController {
 
 	}
 
-	public void initialize() {
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
 		User user = UserSession.getInstance().getUser();
 		String nickname = user.getNickname();
 		welcomeLabel.setText("환영합니다 " + nickname + "님");
