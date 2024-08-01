@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.ReviewNoteController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="850.0" prefWidth="1500.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.ReviewNoteController">
     <children>
-        <ScrollPane fx:id="scrollPane" layoutX="38.0" layoutY="60.0" minViewportHeight="500.0" minViewportWidth="500.0" prefHeight="515.0" prefWidth="580.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0">
+        <ScrollPane fx:id="scrollPane" layoutX="38.0" layoutY="60.0" minViewportHeight="500.0" minViewportWidth="500.0" prefHeight="740.0" prefWidth="1484.0" style="-fx-border-color: #FFFFFF;" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="80.0">
             <content>
-                <VBox fx:id="contentBox" prefHeight="200.0" prefWidth="579.0" />
+                <VBox fx:id="contentBox" alignment="CENTER" prefHeight="687.0" prefWidth="1157.0" spacing="10.0" />
             </content>
         </ScrollPane>
-        <Label alignment="BOTTOM_CENTER" layoutY="8.0" prefHeight="52.0" prefWidth="600.0" text="오답 노트" textAlignment="CENTER" AnchorPane.bottomAnchor="565.2">
+        <Label alignment="BOTTOM_CENTER" layoutX="450.0" prefHeight="52.0" prefWidth="600.0" styleClass="label-custom-font" text="오답 노트" textAlignment="CENTER" AnchorPane.bottomAnchor="798.0">
             <font>
-                <Font size="18.0" />
+                <Font size="20.0" />
             </font>
         </Label>
-        <Button fx:id="returnButton" layoutX="530.0" mnemonicParsing="false" onAction="#handleReturnButton"
-                prefHeight="22.0" prefWidth="70.0" text="돌아가기" textAlignment="CENTER"/>
+        <Button fx:id="returnButton" layoutX="1359.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="40.0" prefWidth="120.0" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER" />
     </children>
 </AnchorPane>
