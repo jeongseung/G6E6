@@ -29,7 +29,7 @@ public class QuizRepository {
 				+ "      from quizzes "
 				+ "      where subject_id = ?) "
 				+ "where quiz_id not in (select quiz_id "
-				+ "                      from errorreports);");
+				+ "                      from errorreports)");
 		preparedStatement.setInt(1, subjectId);
 		ResultSet rs = preparedStatement.executeQuery();
 		List<Quiz> quizzes = new ArrayList<>();

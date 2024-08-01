@@ -14,16 +14,16 @@ public class ReviewNoteRepository {
 
 	public List<Quiz> findAllQuizByUserId(int id) throws Exception {
 		List<Quiz> quizzes = new ArrayList<>();
-		String sql = "select *"
-			+ "from quizzes"
-			+ "where quiz_id in (select quiz_id"
-			+ "                  from mistakes"
+		String sql = "select * "
+			+ "from quizzes "
+			+ "where quiz_id in (select quiz_id "
+			+ "                  from mistakes "
 			+ "                  where user_id=?)"
 			+ "and quiz_id not in (select quiz_id "
 			+ "                    from errorreports "
 			+ "                    where error_id in (select error_id "
 			+ "                                       from usererrorreports "
-			+ "                                       where user_id=?));";
+			+ "                                       where user_id=?))";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		pstmt.setInt(1, id);
