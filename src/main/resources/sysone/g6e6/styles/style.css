@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "pretendard";
+    src: url("sysone/g6e6/fonts/Pretendard-Regular.ttf");
+}
+
+.label-custom-font {
+    -fx-font-family: "pretendard";
+    -fx-font-size: 20px;
+}
