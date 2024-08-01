@@ -21,8 +21,10 @@
                    style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;"/>
         <ChoiceBox fx:id="gameCreateChoiceBox2" layoutX="150.0" layoutY="200.0" prefHeight="30.0" prefWidth="300.0"
                    style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;"/>
-        <Button fx:id="gameCreateButton" layoutX="250.0" layoutY="345.0" mnemonicParsing="false" prefHeight="30.0"
-                onAction="#startGame"
-                prefWidth="100.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;" text="입력"/>
+        <Button fx:id="gameCreateButton" layoutX="250.0" layoutY="345.0" mnemonicParsing="false" onAction="#startGame"
+                prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;"
+                text="입력"/>
+        <Button fx:id="returnButton" layoutX="530.0" mnemonicParsing="false" onAction="#handleReturnButton"
+                prefHeight="22.0" prefWidth="70.0" text="돌아가기" textAlignment="CENTER"/>
     </children>
 </AnchorPane>

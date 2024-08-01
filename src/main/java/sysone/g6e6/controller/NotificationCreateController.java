@@ -2,12 +2,14 @@ package sysone.g6e6.controller;
 
 import java.sql.SQLException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sysone.g6e6.model.User;
 import sysone.g6e6.service.NotificationCreateService;
+import sysone.g6e6.util.FXUtil;
 import sysone.g6e6.util.UserSession;
 
 public class NotificationCreateController {
@@ -21,7 +23,7 @@ public class NotificationCreateController {
 		this.notificationCreateService = new NotificationCreateService();
 	}
 
-	public void handleSaveNotice() throws SQLException {
+	public void handleSaveNotice() {
 		User user = UserSession.getInstance().getUser();
 		String title = titleField.getText();
 		String content = contentArea.getText();
@@ -29,13 +31,18 @@ public class NotificationCreateController {
 			showAlert(Alert.AlertType.ERROR, "공지 등록 실패", "제목을 입력해주세요");
 			return;
 		}
-		if (content == null){
+		if (content == null) {
 			showAlert(Alert.AlertType.ERROR, "공지 등록 실패", "내용을 입력해주세요");
 			return;
 		}
 		//공지 저장
-		notificationCreateService.createNotification(user.getId(), title, content);
-		showAlert(Alert.AlertType.INFORMATION,"공지 등록 성공", "성공적으로 등록했습니다.");
+		try {
+			notificationCreateService.createNotification(user.getId(), title, content);
+			showAlert(Alert.AlertType.INFORMATION, "공지 등록 성공", "성공적으로 등록했습니다.");
+			FXUtil.getInstance().changeScene("AdminMainPage");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -44,5 +51,10 @@ public class NotificationCreateController {
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
+	}
+
+	@FXML
+	public void handleReturnButton(ActionEvent e) {
+		FXUtil.getInstance().changeScene("AdminMainPage");
 	}
 }

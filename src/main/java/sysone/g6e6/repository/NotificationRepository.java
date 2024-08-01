@@ -16,19 +16,20 @@ public class NotificationRepository {
 
 	public Notification save(Notification notification) throws SQLException {
 		PreparedStatement ps = conn.prepareStatement(
-			"INSERT INTO NOTIFICATIONS (USER_ID, TITLE, CONTENT, DATE) values (?,?,?,?)"
+			"INSERT INTO NOTIFICATIONS (USER_ID, TITLE, CONTENT, CREATE_DATE) values (?,?,?,?)"
 		);
 		ps.setInt(1, notification.getUserId());
 		ps.setString(2, notification.getTitle());
 		ps.setString(3, notification.getContent());
 		ps.setTimestamp(4, Timestamp.valueOf(notification.getDate()));
+		ps.executeUpdate();
 		return notification;
 	}
 
 	public List<Notification> getLatestNotifications(int cnt) throws SQLException {
 		List<Notification> notifications = new ArrayList<>();
 		PreparedStatement ps = conn.prepareStatement(
-			"SELECT * FROM(SELECT * FROM NOTIfICATIONS ORDER BY NOTIFICATION_DATE DESC) WHERE ROWNUM <= ?");
+			"SELECT * FROM(SELECT * FROM NOTIfICATIONS ORDER BY CREATE_DATE DESC) WHERE ROWNUM <= ?");
 		ps.setInt(1, cnt);
 		ResultSet rs = ps.executeQuery();
 
@@ -36,9 +37,9 @@ public class NotificationRepository {
 			Notification notification = new Notification(
 				rs.getInt("NOTIFICATION_ID"),
 				rs.getInt("USER_ID"),
-				rs.getString("NOTIFICATION_TITLE"),
-				rs.getString("NOTIFICATION_CONTENT"),
-				rs.getTimestamp("NOTIFICATION_DATE").toLocalDateTime()
+				rs.getString("TITLE"),
+				rs.getString("CONTENT"),
+				rs.getTimestamp("CREATE_DATE").toLocalDateTime()
 			);
 			notifications.add(notification);
 		}

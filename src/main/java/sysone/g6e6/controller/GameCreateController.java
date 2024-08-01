@@ -51,4 +51,9 @@ public class GameCreateController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
+
+	@FXML
+	public void handleReturnButton(ActionEvent e) {
+		FXUtil.getInstance().changeScene("MainPage");
+	}
 }

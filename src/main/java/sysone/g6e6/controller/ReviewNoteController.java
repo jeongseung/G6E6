@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -67,5 +68,10 @@ public class ReviewNoteController implements Initializable {
 				throw new RuntimeException(e);
 			}
 		});
+	}
+
+	@FXML
+	public void handleReturnButton(ActionEvent e) {
+		FXUtil.getInstance().changeScene("MainPage");
 	}
 }
