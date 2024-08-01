@@ -2,6 +2,7 @@ package sysone.g6e6.controller;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -12,7 +13,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 
-;
+
 
 public class RankingChildController {
 
@@ -21,9 +22,18 @@ public class RankingChildController {
     @FXML
     private AnchorPane childPane;
 
+    public void initialize() {
+        // CSS 파일을 Scene에 추가
+        Scene scene = childPane.getScene();
+        if (scene != null) {
+            scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+        }
+    }
+
     public void setRankLabel(int rank, String nickname, double solveTime) {
-        System.out.println("타는지");
-        rankLabel.setText(rank + "." + "   " + nickname + "   " + solveTime + "초");
+        String formattedText = String.format("%-15s %-50s %-15s", rank + ".", nickname, solveTime + " 초");
+        rankLabel.setText(formattedText);
+        rankLabel.getStyleClass().add("label-custom-font");
     }
 
     public void setRankColor(int rank) {

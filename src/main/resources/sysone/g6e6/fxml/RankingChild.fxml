@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="childPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.RankingChildController">
+<AnchorPane fx:id="childPane" prefWidth="650.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.RankingChildController">
    <children>
-      <Label fx:id="rankLabel" text="label" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <Label fx:id="rankLabel" layoutX="28.0" prefHeight="18.0" prefWidth="588.0" text="label" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>

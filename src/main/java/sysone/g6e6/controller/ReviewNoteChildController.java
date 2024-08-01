@@ -3,6 +3,8 @@ package sysone.g6e6.controller;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -18,7 +20,11 @@ import java.util.function.Consumer;
 public class ReviewNoteChildController {
     @FXML
     private Label problemLabel, answerLabel;
+    @FXML
+    private HBox answerPane;
     private Quiz quiz;
+    @FXML
+    private AnchorPane parentPane;
     private ReviewNoteController parentController;
     private ReviewNoteChildService reviewNoteChildService = new ReviewNoteChildService();
 
@@ -73,6 +79,19 @@ public class ReviewNoteChildController {
         }
     }
 
+    @FXML
+    public void initialize() {
+        // CSS 파일을 Scene에 추가
+        Scene scene = parentPane.getScene();
+        if (scene != null) {
+            scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+        }
+
+        // CSS 클래스를 컨트롤에 적용
+        problemLabel.getStyleClass().add("label-custom-font");
+        answerLabel.getStyleClass().add("answer-label-custom-font");
+        answerPane.getStyleClass().add("answer-pane-style");
+    }
 
 
     @FXML
