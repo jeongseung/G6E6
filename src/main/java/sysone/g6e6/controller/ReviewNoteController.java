@@ -41,7 +41,7 @@ public class ReviewNoteController implements Initializable {
 
 	public void loadQuizzes() {
 		contentBox.getChildren().clear();
-		contentBox.setSpacing(10); // 컴포넌트 사이에 여백 추가
+		contentBox.setSpacing(30); // 컴포넌트 사이에 여백 추가
 		Platform.runLater(() -> {
 			try {
 				//테스트 시 userId말고 번호 입력
