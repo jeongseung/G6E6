@@ -94,7 +94,7 @@ public class SignUpController {
 			signUpService.signUpUser(email, password, nickname, role);
 			showAlert(Alert.AlertType.INFORMATION, "회원가입 성공", "성공적으로 회원가입되었습니다.");
 			FXUtil fx = FXUtil.getInstance();
-			fx.changeScene("MainPage");
+			fx.changeScene("LoginPage");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
