@@ -25,13 +25,18 @@ public class LoginController {
 
 	// 로그인 기능
 	@FXML
-	private void handleLogin() throws SQLException {
+	private void handleLogin() {
 		String email = emailField.getText();
 		String password = passwordField.getText();
 
-		String message = loginService.checkUser(email, password);
+		String message = null;
+		try {
+			message = loginService.checkUser(email, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-		if (message.equals("Login success")) {
+		if (message != null && message.equals("Login success")) {
 			showAlert(Alert.AlertType.INFORMATION, "로그인 성공", "성공적으로 로그인했습니다!");
 			// System.out.println("로그인 성공");
 			FXUtil fx = FXUtil.getInstance();
