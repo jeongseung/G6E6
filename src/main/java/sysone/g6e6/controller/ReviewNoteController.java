@@ -24,11 +24,11 @@ public class ReviewNoteController implements Initializable {
 	private ScrollPane scrollPane;
 	@FXML
 	private VBox contentBox; // VBox로 자식 컴포넌트를 관리
-	private double totalHeight = 0;
 	private int cnt = 0;
 	private ReviewNoteService reviewNoteService = new ReviewNoteService();
 	private User user = UserSession.getInstance().getUser();
 	int userId = user.getId();
+
 
 	public List<Quiz> getQuizList(int id) throws Exception {
 		return reviewNoteService.getQuizList(id);
@@ -49,20 +49,12 @@ public class ReviewNoteController implements Initializable {
 				for (Quiz quiz : quizzes) {
 					FXMLLoader loader = FXUtil.getInstance().getLoader("ReviewNoteChild.fxml");
 					AnchorPane childComponent = loader.load();
-
 					ReviewNoteChildController ccc = loader.getController();
 					ccc.setParentController(this); // 부모 컨트롤러를 설정
 					ccc.SetQuizData(quiz);
 					ccc.setLabels(quiz.getProblem(), quiz.getAnswer(), scrollPane.getWidth() - 40);
-
-					ccc.getHeight(height -> {
-						Platform.runLater(() -> {
-							totalHeight += height + 20; // 컴포넌트 높이와 여백 추가
-							contentBox.getChildren().add(childComponent);
-							scrollPane.setVvalue(1.0); // 스크롤을 맨 아래로
-							cnt++;
-						});
-					});
+					contentBox.getChildren().add(childComponent);
+					cnt++;
 				}
 			} catch (Exception e) {
 				throw new RuntimeException(e);

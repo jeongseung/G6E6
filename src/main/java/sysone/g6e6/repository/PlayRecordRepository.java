@@ -33,32 +33,23 @@ public class PlayRecordRepository {
 
     public List<Map<String, Double>> findByDifficulty(String difficulty, String subjectContent) throws Exception {
 
-        String sql = "select nickname, solve_time " +
-                "from ( " +
-                "    select " +
-                "        (select u.nickname from users u where u.user_id = pr.user_id) as nickname, " +
-                "        pr.solve_time " +
-                "    from playrecords pr " +
-                "    where (pr.user_id, pr.solve_time) in ( " +
-                "        select " +
-                "            pr2.user_id, " +
-                "            min(pr2.solve_time) " +
-                "        from playrecords pr2 " +
-                "        where pr2.difficulty = ? " +
-                "        and pr2.subject_id = (select s.subject_id from subjects s where s.subject_content = ?) " +
-                "        group by pr2.user_id, pr2.subject_id, pr2.difficulty " +
+        String sql = "SELECT * FROM (" +
+                "    SELECT nickname, solve_time " +
+                "    FROM (" +
+                "        SELECT u.nickname, pr.solve_time, " +
+                "               ROW_NUMBER() OVER (PARTITION BY pr.user_id ORDER BY pr.solve_time ASC) AS rn " +
+                "        FROM playrecords pr " +
+                "        JOIN users u ON pr.user_id = u.user_id " +
+                "        WHERE pr.difficulty = ? " +
+                "        AND pr.subject_id = (SELECT s.subject_id FROM subjects s WHERE s.subject_content = ?) " +
                 "    ) " +
-                "    and pr.difficulty = ? " +
-                "    and pr.subject_id = (select s.subject_id from subjects s where s.subject_content = ?) " +
-                "    order by pr.solve_time asc " +
+                "    WHERE rn = 1 " +
+                "    ORDER BY solve_time ASC" +
                 ") " +
-                "where rownum <= 10";
+                "WHERE ROWNUM <= 10";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, difficulty);
         pstmt.setString(2, subjectContent);
-        pstmt.setString(3, difficulty);
-        pstmt.setString(4, subjectContent);
-
         ResultSet rs = pstmt.executeQuery();
         List<Map<String, Double>> results = new ArrayList<>();
         while (rs.next()) {

@@ -18,13 +18,6 @@ import java.util.function.Consumer;
 public class ReviewNoteChildController {
     @FXML
     private Label problemLabel, answerLabel;
-    @FXML
-    private AnchorPane problemPane;
-    @FXML
-    private HBox answerPane;
-    @FXML
-    private VBox parentVBox;
-
     private Quiz quiz;
     private ReviewNoteController parentController;
     private ReviewNoteChildService reviewNoteChildService = new ReviewNoteChildService();
@@ -38,37 +31,21 @@ public class ReviewNoteChildController {
     }
 
     public void setLabels(String prob, String ans, double parentWidth) {
-        problemLabel.setText(prob);
-        answerLabel.setText(ans);
 
         double availableWidth = parentWidth - 40;
+
         problemLabel.setPrefWidth(availableWidth);
         problemLabel.setMaxWidth(availableWidth);
 
+        problemLabel.setText(prob);
+        answerLabel.setText(ans);
         // 텍스트가 길어질 경우 높이를 조정
         problemLabel.setWrapText(true);
         problemLabel.applyCss();
         problemLabel.layout();
 
-        // AnchorPane 높이 설정
-        double problemLabelHeight = problemLabel.getHeight();
-        problemPane.setPrefHeight(problemLabelHeight + 20); // 여백 포함
-
-        parentVBox.setPrefHeight(problemPane.getPrefHeight() + answerPane.getPrefHeight());
     }
 
-    public void getHeight(Consumer<Double> callback) {
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.00001));
-        pause.setOnFinished(event -> {
-            Platform.runLater(() -> {
-                parentVBox.applyCss();
-                parentVBox.layout();
-                double height = parentVBox.getHeight();
-                callback.accept(height);
-            });
-        });
-        pause.play();
-    }
 
     @FXML
     public void handleErrorReport() {
@@ -95,6 +72,7 @@ public class ReviewNoteChildController {
             }
         }
     }
+
 
 
     @FXML

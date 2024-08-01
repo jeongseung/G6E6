@@ -3,16 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.ReviewNoteChildController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.ReviewNoteChildController" prefHeight="100.0" prefWidth="500.0">
     <children>
-        <VBox fx:id="parentVBox">
+        <VBox fx:id="parentVBox" prefWidth="500.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
             <children>
-                <AnchorPane fx:id="problemPane" style="-fx-background-color: #667799; -fx-background-radius: 20;">
+                <AnchorPane fx:id="problemPane" style="-fx-background-color: #667799; -fx-background-radius: 10;" prefHeight="50.0" prefWidth="500.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <Label fx:id="problemLabel" alignment="TOP_LEFT" layoutX="20.0" layoutY="7.0" text="Label" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                     </children>
                 </AnchorPane>
-                <HBox fx:id="answerPane" spacing="10.0">
+                <HBox fx:id="answerPane" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <Label fx:id="answerLabel" style="-fx-background-radius: 15;" text="Label" visible="false" />
                         <Pane HBox.hgrow="ALWAYS" />

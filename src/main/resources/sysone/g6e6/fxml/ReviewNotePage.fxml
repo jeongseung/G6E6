@@ -9,16 +9,14 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.ReviewNoteController">
     <children>
-        <ScrollPane fx:id="scrollPane" layoutX="38.0" layoutY="57.0" minViewportHeight="500.0" minViewportWidth="500.0"
-                    prefHeight="515.0" prefWidth="521.0">
+        <ScrollPane fx:id="scrollPane" layoutX="38.0" layoutY="60.0" minViewportHeight="500.0" minViewportWidth="500.0" prefHeight="515.0" prefWidth="580.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0">
             <content>
-                <VBox fx:id="contentBox" prefHeight="200.0" prefWidth="515.0"/>
+                <VBox fx:id="contentBox" prefHeight="200.0" prefWidth="579.0" />
             </content>
         </ScrollPane>
-        <Label alignment="BOTTOM_CENTER" layoutY="-7.0" prefHeight="52.0" prefWidth="600.0" text="오답 노트"
-               textAlignment="CENTER">
+        <Label alignment="BOTTOM_CENTER" layoutY="8.0" prefHeight="52.0" prefWidth="600.0" text="오답 노트" textAlignment="CENTER" AnchorPane.bottomAnchor="565.2">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Label>
         <Button fx:id="returnButton" layoutX="530.0" mnemonicParsing="false" onAction="#handleReturnButton"
