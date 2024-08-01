@@ -58,25 +58,20 @@ public class GameScreenService {
 
 	private void createMap() {
 		Random rand = new Random(System.currentTimeMillis());
-		Collections.shuffle(quizzes);
+		long seed = rand.nextLong();
+		Collections.shuffle(quizzes, new Random(seed));
 		int count_loop = 1;
 		while ((h_num + v_num) < total_num) {
-			// System.out.println(count_loop++);
-			// System.out.println(isVertical ? "세로" : "가로");
 			x = rand.nextInt(map.length);
 			y = rand.nextInt(map.length);
 			if (idx == using_words.size()) {
 				rand = new Random(System.currentTimeMillis());
-				Collections.shuffle(wasted_words);
+				Collections.shuffle(wasted_words, new Random(rand.nextLong()));
 				using_words.addAll(wasted_words);
 				wasted_words.clear();
 			}
-			// System.out.println(using_words.size());
 			curQuiz = using_words.get(idx++);
-			// System.out.println(curQuiz.toString());
 			String word = curQuiz.getAnswer();
-			// System.out.println(x + ", " + y);
-			// System.out.println(word);
 
 			if (isVertical) {
 				if ((x + word.length() - 1) >= map.length) {
@@ -254,7 +249,7 @@ public class GameScreenService {
 				}
 			}
 		}
-		showMap(map);
+		// showMap(map);
 	}
 
 	private void showVisited(boolean isV) {
