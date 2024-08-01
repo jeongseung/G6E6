@@ -318,7 +318,7 @@ public class GameScreenController {
 				if (alert.showAndWait().get() == ButtonType.OK) {
 					pauseTimer();
 					if (UserSession.getInstance().getUser() == null) {
-						gameScreenService.reportError(1, curQuiz.getId());
+						gameScreenService.reportError(11, curQuiz.getId());
 					} else {
 						gameScreenService.reportError(UserSession.getInstance().getUser().getId(), curQuiz.getId());
 					}
