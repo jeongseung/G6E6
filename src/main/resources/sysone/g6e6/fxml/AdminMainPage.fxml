@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.AdminMainController">
     <children>
@@ -39,28 +41,19 @@
         <Button fx:id="noticeButton3" alignment="CENTER" layoutX="85.0" layoutY="186.0" mnemonicParsing="false"
                 onAction="#handleNotice3" prefHeight="25.0" prefWidth="193.0" style="-fx-background-color: #667799;"
                 text="3번 공지글" textFill="WHITE" visible="false"/>
-        <Group fx:id="noticeGroup1" layoutX="63.0" layoutY="55.0" visible="false">
+        <Group fx:id="noticeGroup" layoutX="63.0" layoutY="55.0" visible="false">
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="289.0" layoutX="8.0" layoutY="2.0"
                            stroke="#667799" strokeType="INSIDE" width="459.0"/>
-                <Label fx:id="noticeLabel1" alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0"
+                <Label fx:id="noticeLabel" alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0"
                        prefWidth="399.0" text="글내용"/>
-            </children>
-        </Group>
-        <Group fx:id="noticeGroup2" layoutX="63.0" layoutY="55.0" visible="false">
-            <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="289.0" layoutX="8.0" layoutY="2.0"
-                           stroke="#667799" strokeType="INSIDE" width="459.0"/>
-                <Label fx:id="noticeLabel2" alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0"
-                       prefWidth="399.0" text="글내용"/>
-            </children>
-        </Group>
-        <Group fx:id="noticeGroup3" layoutX="63.0" layoutY="55.0" visible="false">
-            <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="289.0" layoutX="8.0" layoutY="2.0"
-                           stroke="#667799" strokeType="INSIDE" width="459.0"/>
-                <Label fx:id="noticeLabel3" alignment="TOP_LEFT" layoutX="38.0" layoutY="22.0" prefHeight="250.0"
-                       prefWidth="399.0" text="글내용"/>
+                <Button fx:id="closeButton" layoutX="442.0" layoutY="3.0" mnemonicParsing="false"
+                        onAction="#handleCloseButton" prefHeight="13.0" prefWidth="13.0"
+                        style="-fx-background-color: #667799;" text="X" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Button>
             </children>
         </Group>
     </children>
