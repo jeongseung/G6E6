@@ -12,6 +12,8 @@ import sysone.g6e6.util.FXUtil;
 public class MainApplication extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
+		System.setProperty("prism.lcdtext", "false");
+
 		FXUtil.init(stage, "LoginPage.fxml", "");
 	}
 
@@ -26,6 +28,7 @@ public class MainApplication extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		launch();
 	}
 }
