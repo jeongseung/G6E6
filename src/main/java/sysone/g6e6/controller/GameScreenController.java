@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import sysone.g6e6.model.Quiz;
 import sysone.g6e6.model.Subject;
@@ -47,6 +48,8 @@ public class GameScreenController {
 	private GameScreenService gameScreenService = new GameScreenService();
 	private List<Quiz> vQuiz, hQuiz;
 	private List<int[]> vCoord, hCoord;
+	private String fontPath = getClass().getResource("/sysone/g6e6/fonts/Pretendard-Regular.ttf").toExternalForm();
+	private Font customFont = Font.loadFont(fontPath, 20);
 
 	// user-interact
 	private AnchorPane curChildBlock;
@@ -59,11 +62,20 @@ public class GameScreenController {
 	private List<Quiz> mistakeQuiz = new ArrayList<>();
 
 	public void init(String subject_name, String diff) {
+		guessTextField.setFont(customFont);
+		subjectTitleLabel.setFont(customFont);
+		announcementLabel.setFont(customFont);
+		timerLabel.setFont(customFont);
+		endInfoLabel.setFont(customFont);
+		pauseInfoLabel.setFont(customFont);
+		clearTimeLabel.setFont(customFont);
+		accuracyLabel.setFont(customFont);
+
 		this.subject_name = subject_name;
 		this.diff = diff;
 		total_num = (diff == "쉬움" ? 6 : diff == "보통" ? 12 : 25);
 		baseAnchorPane.getChildren().removeAll(announcementLabel, reportedStackPane, endStackPane, pauseStackPane);
-		gameGridPane.setStyle("-fx-background-color:Skyblue");
+		gameGridPane.setStyle("-fx-background-color:#D2DDF8;");
 		try {
 			subjectTitleLabel.setText(subject_name);
 			subjectTitleLabel.setMinWidth(Label.USE_PREF_SIZE);
@@ -82,7 +94,7 @@ public class GameScreenController {
 				new KeyFrame(Duration.millis(10), e -> updateTimer())
 			);
 			timeline.setCycleCount(Timeline.INDEFINITE);
-			timerLabel.setText("00:00:00.00");
+			timerLabel.setText("00:00:00");
 			startTimer();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -101,12 +113,13 @@ public class GameScreenController {
 				if (label != null) {
 					label.setMaxWidth(Double.MAX_VALUE);
 					label.setMaxHeight(Double.MAX_VALUE);
+					label.setFont(customFont);
 					label.setStyle("-fx-background-color:White;"
 						+ "-fx-text-alignment:center;"
-						+ "-fx-text-fill : #D3D3D3");
+						+ "-fx-text-fill : #D3D3D3;");
 					label.setAlignment(Pos.CENTER);
-					// label.setText("");
-					label.setText("" + answer.charAt(j));// flag : 실제 문제에서는 위 코드로 변경해야함
+					label.setText("");
+					// label.setText("" + answer.charAt(j));
 				}
 			}
 			createChild(i + 1, quizzes.get(i).getProblem(), isVertical);
@@ -172,6 +185,7 @@ public class GameScreenController {
 		for (int n = 0; n < (isVertical ? (vQuiz.get(number - 1).getAnswer().length()) :
 			(hQuiz.get(number - 1).getAnswer().length())); n++) {
 			label = getLabelAt(gameGridPane, curCoord[1] + (isVertical ? 0 : n), curCoord[0] + (isVertical ? n : 0));
+			label.setFont(customFont);
 			label.setStyle("-fx-background-color : #C0C0C0; -fx-text-fill : "
 				+ (correctLabel.contains(label) ? "BLACK" : "#C0C0C0"));
 		}
@@ -232,7 +246,7 @@ public class GameScreenController {
 	private void showAnnounce(String announcement, int ann_typ) {
 		if (!baseAnchorPane.getChildren().contains(announcementLabel)) {
 			announcementLabel.setText(announcement);
-			String css = "-fx-font-size : 30; -fx-alignment:center; -fx-text-fill : "
+			String css = "-fx-font-size : 50; -fx-alignment:center; -fx-text-fill : "
 				+ (ann_typ == 1 ? "Green" : ann_typ == 2 ? "Red" : "Black");
 			announcementLabel.setStyle(css);
 			announcementLabel.setOpacity(1.0);
@@ -350,6 +364,15 @@ public class GameScreenController {
 
 	@FXML
 	public void handleExitButton(ActionEvent e) {
+		// try {
+		// 	FXMLLoader loader = FXUtil.getInstance().getLoader("MainPage.fxml");
+		// 	Parent root = loader.load();
+		// 	MainPageController mpc = loader.getController();
+		// 	mpc.initialize();
+		// 	FXUtil.getInstance().changeScene(root, ".css");
+		// } catch (Exception ex) {
+		// 	ex.printStackTrace();
+		// }
 		FXUtil.getInstance().changeScene("MainPage");
 	}
 
