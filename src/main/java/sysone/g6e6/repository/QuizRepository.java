@@ -24,13 +24,33 @@ public class QuizRepository {
 	public List<Quiz> findBySubjectId(int subjectId) throws Exception {
 		Connection conn = DBUtil.getInstance().getConn();
 		PreparedStatement preparedStatement = conn.prepareStatement(
-			"Select * From quizzes where subject_id = ?");
+			"Select * "
+				+ "from (select * "
+				+ "      from quizzes "
+				+ "      where subject_id = ?) "
+				+ "where quiz_id not in (select quiz_id "
+				+ "                      from errorreports);");
 		preparedStatement.setInt(1, subjectId);
 		ResultSet rs = preparedStatement.executeQuery();
 		List<Quiz> quizzes = new ArrayList<>();
-		while(rs.next()){
-			quizzes.add(new Quiz(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4)));
+		while (rs.next()) {
+			quizzes.add(new Quiz(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4)));
 		}
 		return quizzes;
+	}
+
+	public Quiz findByQuizId(int quizId) throws Exception {
+		Connection conn = DBUtil.getInstance().getConn();
+		PreparedStatement pstmt = conn.prepareStatement("select * from quizzes where quiz_id = ?");
+		pstmt.setInt(1, quizId);
+		ResultSet rs = pstmt.executeQuery();
+		return rs.next() ? new Quiz(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4)) : null;
+	}
+
+	public void deleteQuizById(Integer id) throws Exception {
+		Connection conn = DBUtil.getInstance().getConn();
+		PreparedStatement pstmt = conn.prepareStatement("delete from quizzes where quiz_id = ?");
+		pstmt.setInt(1, id);
+		pstmt.executeUpdate();
 	}
 }

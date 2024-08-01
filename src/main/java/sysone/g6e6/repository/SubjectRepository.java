@@ -23,6 +23,13 @@ public class SubjectRepository {
 		return subjects;
 	}
 
+	public Subject findBySubjectId(int subjectId) throws Exception {
+		PreparedStatement pstmt = conn.prepareStatement("select * from subjects where subject_id = ?");
+		pstmt.setInt(1, subjectId);
+		ResultSet rs = pstmt.executeQuery();
+		return rs.next() ? new Subject(rs.getInt(1), rs.getString(2)) : null;
+	}
+
 	public Subject findByContent(String content) throws Exception {
 		Subject subject = null;
 		PreparedStatement pstmt = conn.prepareStatement("select * from subjects where subject_content = ?");
