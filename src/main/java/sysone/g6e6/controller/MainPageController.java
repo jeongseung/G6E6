@@ -22,11 +22,7 @@ public class MainPageController {
 	@FXML
 	private Label welcomeLabel;
 	@FXML
-	private Label noticeLabel1;
-	@FXML
-	private Label noticeLabel2;
-	@FXML
-	private Label noticeLabel3;
+	private Label noticeLabel;
 	@FXML
 	private Button noticeButton1;
 	@FXML
@@ -34,11 +30,7 @@ public class MainPageController {
 	@FXML
 	private Button noticeButton3;
 	@FXML
-	private Group noticeGroup1;
-	@FXML
-	private Group noticeGroup2;
-	@FXML
-	private Group noticeGroup3;
+	private Group noticeGroup;
 
 	private MainPageService mainPageService;
 	private List<Notification> latestNotifications;
@@ -48,12 +40,16 @@ public class MainPageController {
 
 	}
 
-	public void initialize() throws SQLException {
+	public void initialize() {
 		User user = UserSession.getInstance().getUser();
 		String nickname = user.getNickname();
 		welcomeLabel.setText("환영합니다 " + nickname + "님");
 
-		latestNotifications = mainPageService.getLatestNotifications(3);
+		try {
+			latestNotifications = mainPageService.getLatestNotifications(3);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		if (latestNotifications.size() > 0) {
 			noticeButton1.setText(latestNotifications.get(0).getTitle());
@@ -75,24 +71,24 @@ public class MainPageController {
 	@FXML
 	public void handleNotice1(ActionEvent event) {
 		if (latestNotifications.size() > 0) {
-			noticeLabel1.setText(latestNotifications.get(0).getContent());
-			noticeGroup1.setVisible(true);
+			noticeLabel.setText(latestNotifications.get(0).getContent());
+			noticeGroup.setVisible(true);
 		}
 	}
 
 	@FXML
 	public void handleNotice2(ActionEvent event) {
 		if (latestNotifications.size() > 1) {
-			noticeLabel2.setText(latestNotifications.get(1).getContent());
-			noticeGroup2.setVisible(true);
+			noticeLabel.setText(latestNotifications.get(1).getContent());
+			noticeGroup.setVisible(true);
 		}
 	}
 
 	@FXML
 	public void handleNotice3(ActionEvent event) {
 		if (latestNotifications.size() > 2) {
-			noticeLabel3.setText(latestNotifications.get(2).getContent());
-			noticeGroup3.setVisible(true);
+			noticeLabel.setText(latestNotifications.get(2).getContent());
+			noticeGroup.setVisible(true);
 		}
 	}
 
@@ -129,6 +125,12 @@ public class MainPageController {
 	public void handleGoToRanking(ActionEvent event) {
 		FXUtil fx = FXUtil.getInstance();
 		fx.changeScene("RankingPage");
+	}
+
+	// 공지 상세 조회 닫기
+	@FXML
+	public void handleCloseButton(ActionEvent event) {
+		noticeGroup.setVisible(false);
 	}
 
 }

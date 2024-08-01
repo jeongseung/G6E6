@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import sysone.g6e6.service.SignUpService;
+import sysone.g6e6.util.FXUtil;
 
 public class SignUpController {
 	@FXML
@@ -57,7 +58,7 @@ public class SignUpController {
 	}
 
 	@FXML
-	private void handleSignUp(ActionEvent event) throws SQLException {
+	private void handleSignUp(ActionEvent event) {
 		String email = emailField.getText();
 		String password = passwordField.getText();
 		String nickname = nicknameField.getText();
@@ -89,11 +90,14 @@ public class SignUpController {
 			return;
 		}
 
-		signUpService.signUpUser(email, password, nickname, role);
-		// System.out.println(user.toString());
-		showAlert(Alert.AlertType.INFORMATION, "회원가입 성공", "성공적으로 회원가입되었습니다.");
-		// FXUtil fx = FXUtil.getInstance();
-		// fx.changeScene("MainPage");
+		try {
+			signUpService.signUpUser(email, password, nickname, role);
+			showAlert(Alert.AlertType.INFORMATION, "회원가입 성공", "성공적으로 회원가입되었습니다.");
+			FXUtil fx = FXUtil.getInstance();
+			fx.changeScene("MainPage");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private boolean isValidEmail(String email) {
@@ -113,5 +117,10 @@ public class SignUpController {
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
+	}
+
+	@FXML
+	public void handleReturnButton(ActionEvent e) {
+		FXUtil.getInstance().changeScene("LoginPage");
 	}
 }

@@ -350,7 +350,7 @@ public class GameScreenController {
 
 	@FXML
 	public void handleExitButton(ActionEvent e) {
-		FXUtil.getInstance().changeScene("gameCreatePage");
+		FXUtil.getInstance().changeScene("MainPage");
 	}
 
 	private void showResult() {
