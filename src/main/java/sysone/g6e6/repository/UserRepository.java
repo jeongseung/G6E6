@@ -41,6 +41,14 @@ public class UserRepository {
 		return user;
 	}
 
+	public User findByUserId(int userId) throws Exception {
+		PreparedStatement pstmt = conn.prepareStatement("select * from users where user_id = ?");
+		pstmt.setInt(1, userId);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		return new User(rs.getInt(1), rs.getString(2), "", rs.getString(4), rs.getString(5), "");
+	}
+
 	public User saveUser(User user) throws SQLException {
 		PreparedStatement ps = conn.prepareStatement(
 			"INSERT INTO USERS (EMAIL, PASSWORD, NICKNAME, ROLE, SALT) values(?,?,?,?,?)");
