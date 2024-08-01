@@ -1,5 +1,6 @@
 package sysone.g6e6.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,6 +46,7 @@ public class RankingController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hideSubjectLabel.setVisible(true);
         hideDifficultyLabel.setVisible(true);
+
 
         subjectLabel1.setOnMouseClicked(event -> handleSubjectSelection(subjectLabel1));
         subjectLabel2.setOnMouseClicked(event -> handleSubjectSelection(subjectLabel2));
@@ -101,16 +103,22 @@ public class RankingController implements Initializable {
                         rcc.setRankLabel(cnt, nickname, solveTime);
                         rcc.setRankColor(cnt);
                         parentPane.getChildren().add(childPane);
+                        childPane.setPrefHeight(60);
                         childPane.setLayoutX(20);
-                        childPane.setLayoutY(50 * (cnt - 1) + 5);
+                        childPane.setLayoutY(80 * (cnt - 1) + 5);
                         cnt++;
                     }
                 }
-                parentPane.setPrefHeight(50 * response.size() + 10);
+                parentPane.setPrefHeight(70 * response.size() + 10);
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @FXML
+    public void handleReturnButton(ActionEvent e) {
+        FXUtil.getInstance().changeScene("MainPage");
     }
 }
