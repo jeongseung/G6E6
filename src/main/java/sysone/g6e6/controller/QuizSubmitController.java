@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import sysone.g6e6.model.Quiz;
 import sysone.g6e6.model.Subject;
 import sysone.g6e6.service.QuizSubmitService;
+import sysone.g6e6.util.FXUtil;
 
 public class QuizSubmitController implements Initializable {
 	private QuizSubmitService quizSubmitService = new QuizSubmitService();
@@ -43,8 +44,15 @@ public class QuizSubmitController implements Initializable {
 			Quiz quiz = quizSubmitService.createQuiz(subject.getId(), quizTextArea.getText(),
 				answerTextField.getText());
 			System.out.println("1 quiz created.\n" + quiz.toString());
+			// 제출 성공 알림 뜨면 좋을 듯
+			FXUtil.getInstance().changeScene("MainPage");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@FXML
+	public void handleReturnButton(ActionEvent e) {
+		FXUtil.getInstance().changeScene("MainPage");
 	}
 }
