@@ -11,16 +11,16 @@ import java.util.Random;
 import sysone.g6e6.model.Mistake;
 import sysone.g6e6.model.PlayRecord;
 import sysone.g6e6.model.Quiz;
+import sysone.g6e6.repository.ErrorReportRepository;
 import sysone.g6e6.repository.MistakeRepository;
 import sysone.g6e6.repository.PlayRecordRepository;
 import sysone.g6e6.repository.QuizRepository;
-import sysone.g6e6.repository.ReviewNoteRepository;
 
 public class GameScreenService {
 	private QuizRepository quizRepository = new QuizRepository();
 	private PlayRecordRepository playRecordRepository = new PlayRecordRepository();
 	private MistakeRepository mistakeRepository = new MistakeRepository();
-	private ReviewNoteRepository reviewNoteRepository = new ReviewNoteRepository();
+	private ErrorReportRepository errorReportRepository = new ErrorReportRepository();
 
 	private Quiz curQuiz;
 	private char[][] map = new char[16][16];
@@ -418,6 +418,6 @@ public class GameScreenService {
 	}
 
 	public void reportError(int userId, int quizId) throws Exception {
-		reviewNoteRepository.saveErrorReports(userId, quizId);
+		errorReportRepository.saveErrorReports(userId, quizId);
 	}
 }

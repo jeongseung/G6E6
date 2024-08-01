@@ -1,10 +1,8 @@
 package sysone.g6e6.repository;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,6 @@ import sysone.g6e6.util.DBUtil;
 
 public class ReviewNoteRepository {
 	private Connection conn = DBUtil.getInstance().getConn();
-	private CallableStatement callableStatement = null;
 
 	public List<Quiz> findAllQuizByUserId(int id) throws Exception {
 		List<Quiz> quizzes = new ArrayList<>();
@@ -37,16 +34,4 @@ public class ReviewNoteRepository {
 		}
 		return quizzes;
 	}
-
-	public void saveErrorReports(int userId, int quizId) throws Exception {
-		String plSql = "{ ? = call add_error_report(?, ?) }";
-		callableStatement = conn.prepareCall(plSql);
-		callableStatement.registerOutParameter(1, Types.VARCHAR);
-		callableStatement.setInt(2, userId);
-		callableStatement.setInt(3, quizId);
-		callableStatement.execute();
-
-		String result = callableStatement.getString(1);
-	}
-
 }

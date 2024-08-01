@@ -1,11 +1,11 @@
 package sysone.g6e6.service;
 
-import sysone.g6e6.repository.ReviewNoteRepository;
+import sysone.g6e6.repository.ErrorReportRepository;
 
 public class ReviewNoteChildService {
-	private ReviewNoteRepository reviewNoteRepository = new ReviewNoteRepository();
+	private ErrorReportRepository errorReportRepository = new ErrorReportRepository();
 
 	public void addErrorReports(int user_id, int quiz_id) throws Exception {
-		reviewNoteRepository.saveErrorReports(user_id, quiz_id);
+		errorReportRepository.saveErrorReports(user_id, quiz_id);
 	}
 }
