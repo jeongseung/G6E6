@@ -24,7 +24,12 @@ public class QuizRepository {
 	public List<Quiz> findBySubjectId(int subjectId) throws Exception {
 		Connection conn = DBUtil.getInstance().getConn();
 		PreparedStatement preparedStatement = conn.prepareStatement(
-			"Select * From quizzes where subject_id = ?");
+			"Select * "
+				+ "from (select * "
+				+ "      from quizzes "
+				+ "      where subject_id = ?) "
+				+ "where quiz_id not in (select quiz_id "
+				+ "                      from errorreports);");
 		preparedStatement.setInt(1, subjectId);
 		ResultSet rs = preparedStatement.executeQuery();
 		List<Quiz> quizzes = new ArrayList<>();
