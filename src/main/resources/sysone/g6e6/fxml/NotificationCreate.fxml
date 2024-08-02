@@ -13,7 +13,7 @@
         <Button layoutX="1216.0" layoutY="477.0" onAction="#handleSaveNotice" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="저장" textFill="#f2f5fd" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="300.0" />
         <TextField fx:id="titleField" layoutX="138.0" layoutY="62.0" prefHeight="50.0" prefWidth="353.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="150.0" />
         <TextArea fx:id="contentArea" layoutX="138.0" layoutY="111.0" prefHeight="283.0" prefWidth="353.0" wrapText="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="300.0" />
-        <Button fx:id="returnButton" layoutX="1289.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="40.0" prefWidth="120.0" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0" />
+        <Button fx:id="returnButton" layoutX="1289.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0" />
     </children>
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
