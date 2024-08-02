@@ -34,9 +34,26 @@ public class ErrorReportRepository {
 		callableStatement.execute();
 	}
 
-	public void deleteErrorReport(Integer id) throws Exception {
+	public void deleteByErrorReportId(Integer id) throws Exception {
 		PreparedStatement pstmt = conn.prepareStatement("delete from errorReports where error_id = ?");
 		pstmt.setInt(1, id);
 		pstmt.executeUpdate();
+	}
+
+	public void deleteByQuizId(Integer id) throws Exception {
+		PreparedStatement pstmt = conn.prepareStatement("delete from errorReports where quiz_id = ?");
+		pstmt.setInt(1, id);
+		pstmt.executeUpdate();
+	}
+
+	public List<ErrorReport> findByQuizId(Integer id) throws Exception {
+		PreparedStatement pstmt = conn.prepareStatement("select * from errorReports where quiz_id = ?");
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		List<ErrorReport> errorReports = new ArrayList<>();
+		while (rs.next()) {
+			errorReports.add(new ErrorReport(rs.getInt(1), rs.getInt(2), rs.getByte(3)));
+		}
+		return errorReports;
 	}
 }

@@ -97,10 +97,6 @@ public class AdminErrorController implements Initializable {
 		return countMap;
 	}
 
-	public void deleteQuiz() {
-
-	}
-
 	public void showQuiz(Quiz quiz, String subjectContent) {
 		quizAnchorPane.setVisible(true);
 		infoLabel.setText("문제 분야 : " + subjectContent);
@@ -108,9 +104,9 @@ public class AdminErrorController implements Initializable {
 		answerLabel.setText(quiz.getAnswer());
 	}
 
-	public void deleteQuiz(Quiz quiz, Integer id) {
+	public void deleteQuiz(Quiz quiz) {
 		try {
-			adminErrorService.deleteErrorQuiz(quiz.getId(), id);
+			adminErrorService.deleteErrorQuiz(quiz.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
