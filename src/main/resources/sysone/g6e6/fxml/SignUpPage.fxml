@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="850.0" prefWidth="1500.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.SignUpController">
     <children>
         <Rectangle id="signupbox" arcHeight="5.0" arcWidth="5.0" fill="#667799" height="600.0" layoutX="589.0" layoutY="129.0" stroke="WHITE" strokeType="INSIDE" width="550.0" AnchorPane.leftAnchor="589.0" AnchorPane.rightAnchor="661.0" />
-        <Text layoutX="596.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-custom-font" text="회원가입" textAlignment="CENTER" wrappingWidth="540.1999999999999">
+        <Text fill="WHITE" layoutX="596.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" styleClass="label-custom-font" text="회원가입" textAlignment="CENTER" wrappingWidth="540.1999999999999">
             <font>
                 <Font name="LG Smart UI Regular" size="17.0" />
             </font>

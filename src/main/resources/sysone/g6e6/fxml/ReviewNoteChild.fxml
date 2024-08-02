@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane fx:id="parentPane" prefHeight="100.0" prefWidth="500.0" style="-fx-border-color: #667799; -fx-border-width: 5;" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.ReviewNoteChildController">
+<AnchorPane fx:id="parentPane" prefHeight="100.0" prefWidth="500.0" style="-fx-border-color: #667799; -fx-border-width: 5;" styleClass="label-custom-font" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.ReviewNoteChildController">
     <children>
         <VBox fx:id="parentVBox" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <AnchorPane fx:id="problemPane" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #667799; -fx-background-radius: 0;" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="-20.0" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="-20.0">
                     <children>
-                        <Label fx:id="problemLabel" alignment="TOP_LEFT" layoutX="20.0" layoutY="7.0" text="Label" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                        <Label fx:id="problemLabel" alignment="TOP_LEFT" layoutX="20.0" layoutY="7.0" style="-fx-font-size: 12;" text="Label" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                     </children>
                 </AnchorPane>
                 <Rectangle fx:id="backgroundRectangle" height="22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -22,8 +22,8 @@
                         <Insets left="20.0" />
                      </HBox.margin></Label>
                         <Pane HBox.hgrow="ALWAYS" />
-                        <Button fx:id="answerScreenButton" mnemonicParsing="false" onAction="#HandleScreenButton" style="-fx-background-color: #667799;" text="정답보기" textAlignment="CENTER" />
-                        <Button mnemonicParsing="false" onAction="#handleErrorReport" style="-fx-background-color: #667799;" text="신고하기" />
+                        <Button fx:id="answerScreenButton" mnemonicParsing="false" onAction="#HandleScreenButton" style="-fx-background-color: #667799; -fx-font-size: 12;" text="정답보기" textAlignment="CENTER" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#handleErrorReport" style="-fx-background-color: #667799; -fx-font-size: 12;" text="신고하기" textFill="WHITE" />
                     </children>
                 </HBox>
             </children>

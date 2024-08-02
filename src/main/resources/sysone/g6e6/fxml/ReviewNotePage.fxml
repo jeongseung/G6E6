@@ -16,6 +16,6 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <Button fx:id="returnButton" layoutX="1359.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="40.0" prefWidth="120.0" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER" />
+        <Button fx:id="returnButton" layoutX="1359.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER" textFill="WHITE" />
     </children>
 </AnchorPane>
