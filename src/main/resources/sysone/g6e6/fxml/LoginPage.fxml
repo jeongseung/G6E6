@@ -20,25 +20,29 @@
         </ImageView>
         <Rectangle id="loginbox" arcHeight="5.0" arcWidth="5.0" fill="#667799" height="415.0" layoutX="427.0"
                    layoutY="328.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="INSIDE" width="645.0"
-                   AnchorPane.bottomAnchor="107.0"/>
+                   AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="427.0" AnchorPane.rightAnchor="428.0"/>
         <Rectangle id="idbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="576.0" layoutY="431.0"
-                   stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="350.0"/>
+                   stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="350.0" AnchorPane.leftAnchor="580.0"
+                   AnchorPane.rightAnchor="580.0"/>
         <Button id="loginbtn" layoutX="575.0" layoutY="613.0" mnemonicParsing="false" onAction="#handleLogin"
                 prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #ffffff;" text="로그인" textFill="#667799"
-                AnchorPane.leftAnchor="575.0"/>
+                AnchorPane.bottomAnchor="197.0" AnchorPane.leftAnchor="575.0"/>
         <Rectangle id="pwbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="576.0" layoutY="510.0"
-                   stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="350.0"/>
+                   stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="350.0" AnchorPane.leftAnchor="580.0"
+                   AnchorPane.rightAnchor="580.0"/>
         <Button id="signupbtn" layoutX="800.0" layoutY="613.0" mnemonicParsing="false" onAction="#handleGoToSignUp"
                 prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #ffffff;" text="회원가입"
-                textFill="#667799" AnchorPane.rightAnchor="575.0"/>
+                textFill="#667799" AnchorPane.bottomAnchor="197.0" AnchorPane.rightAnchor="575.0"/>
         <TextField id="idtxt" fx:id="emailField" layoutX="581.0" layoutY="436.0" prefHeight="40.0" prefWidth="340.0"
-                   promptText="아이디" styleClass="label-custom-font">
+                   promptText="아이디" styleClass="label-custom-font" AnchorPane.leftAnchor="585.0"
+                   AnchorPane.rightAnchor="585.0">
             <font>
                 <Font name="LG Smart UI Light" size="12.0"/>
             </font>
         </TextField>
         <PasswordField id="pwtxt" fx:id="passwordField" layoutX="581.0" layoutY="515.0" prefHeight="40.0"
-                       prefWidth="340.0" promptText="비밀번호"/>
+                       prefWidth="340.0" promptText="비밀번호" AnchorPane.leftAnchor="585.0"
+                       AnchorPane.rightAnchor="585.0"/>
     </children>
 
 </AnchorPane>
