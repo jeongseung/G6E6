@@ -20,7 +20,7 @@ public class ErrorReportRepository {
 		PreparedStatement pstmt = conn.prepareStatement("select * from errorReports where resolved=0");
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
-			errorReports.add(new ErrorReport(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getByte(4)));
+			errorReports.add(new ErrorReport(rs.getInt(1), rs.getInt(2), rs.getByte(3)));
 		}
 		return errorReports;
 	}
