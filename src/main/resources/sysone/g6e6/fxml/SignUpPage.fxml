@@ -7,51 +7,51 @@
 
 <AnchorPane prefHeight="850.0" prefWidth="1500.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.SignUpController">
     <children>
-        <Rectangle id="signupbox" arcHeight="5.0" arcWidth="5.0" fill="#667799" height="600.0" layoutX="589.0" layoutY="129.0" stroke="WHITE" strokeType="INSIDE" width="550.0" AnchorPane.leftAnchor="589.0" AnchorPane.rightAnchor="661.0" />
-        <Text fill="WHITE" layoutX="596.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" styleClass="label-custom-font" text="회원가입" textAlignment="CENTER" wrappingWidth="540.1999999999999">
+        <Rectangle id="signupbox" arcHeight="5.0" arcWidth="5.0" fill="#667799" height="600.0" layoutX="475.0" layoutY="131.0" stroke="WHITE" strokeType="INSIDE" width="550.0" />
+        <Text fill="WHITE" layoutX="482.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" styleClass="label-custom-font" text="회원가입" textAlignment="CENTER" wrappingWidth="540.1999999999999">
             <font>
                 <Font name="LG Smart UI Regular" size="17.0" />
             </font>
         </Text>
-        <Rectangle id="emailbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="639.0" layoutY="522.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="341.0" />
-        <Rectangle id="pwcheckbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="639.0" layoutY="445.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" />
-        <Rectangle id="pwbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="639.0" layoutY="366.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" />
-        <Rectangle id="idbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="639.0" layoutY="290.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" />
-        <Button id="inputbtn" layoutX="824.0" layoutY="646.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="25.0" prefWidth="80.0" styleClass="label-custom-font" text=" 입력 ">
+        <Rectangle id="emailbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="525.0" layoutY="524.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="341.0" />
+        <Rectangle id="pwcheckbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="525.0" layoutY="447.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" />
+        <Rectangle id="pwbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="525.0" layoutY="368.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" />
+        <Rectangle id="idbox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="525.0" layoutY="292.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" />
+        <Button id="inputbtn" layoutX="710.0" layoutY="648.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="25.0" prefWidth="80.0" styleClass="label-custom-font" text=" 입력 ">
             <font>
                 <Font name="LG Smart UI Light" size="12.0" />
             </font>
         </Button>
-        <Button id="checkbtn" layoutX="982.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleDuplicationCheck" prefHeight="40.0" prefWidth="100.0" styleClass="label-custom-font" text="중복확인">
+        <Button id="checkbtn" layoutX="868.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleDuplicationCheck" prefHeight="40.0" prefWidth="100.0" styleClass="label-custom-font" text="중복확인">
             <font>
                 <Font name="LG Smart UI Light" size="12.0" />
             </font>
         </Button>
-        <TextField id="idtxt" fx:id="emailField" layoutX="643.0" layoutY="295.0" prefHeight="40.0" prefWidth="331.0" promptText="아이디(이메일)" styleClass="label-custom-font">
+        <TextField id="idtxt" fx:id="emailField" layoutX="529.0" layoutY="297.0" prefHeight="40.0" prefWidth="331.0" promptText="아이디(이메일)" styleClass="label-custom-font">
             <font>
                 <Font name="LG Smart UI Light" size="12.0" />
             </font>
         </TextField>
-        <TextField id="pwtxt" fx:id="passwordField" layoutX="645.0" layoutY="371.0" prefHeight="40.0" prefWidth="437.0" promptText="비밀번호" styleClass="label-custom-font">
+        <PasswordField id="pwtxt" fx:id="passwordField" layoutX="531.0" layoutY="373.0" prefHeight="40.0" prefWidth="437.0" promptText="비밀번호" styleClass="label-custom-font">
+            <font>
+                <Font name="LG Smart UI Light" size="12.0" />
+            </font>
+        </PasswordField>
+        <PasswordField id="pwchecktxt" fx:id="confirmPasswordField" layoutX="531.0" layoutY="451.0" prefHeight="40.0" prefWidth="437.0" promptText="비밀번호 확인" styleClass="label-custom-font">
+            <font>
+                <Font name="LG Smart UI Light" size="12.0" />
+            </font>
+        </PasswordField>
+        <TextField id="emailtxt" fx:id="nicknameField" layoutX="530.0" layoutY="528.0" prefHeight="40.0" prefWidth="331.0" promptText="닉네임" styleClass="label-custom-font">
             <font>
                 <Font name="LG Smart UI Light" size="12.0" />
             </font>
         </TextField>
-        <TextField id="pwchecktxt" fx:id="confirmPasswordField" layoutX="645.0" layoutY="449.0" prefHeight="40.0" prefWidth="437.0" promptText="비밀번호 확인" styleClass="label-custom-font">
-            <font>
-                <Font name="LG Smart UI Light" size="12.0" />
-            </font>
-        </TextField>
-        <TextField id="emailtxt" fx:id="nicknameField" layoutX="644.0" layoutY="526.0" prefHeight="40.0" prefWidth="331.0" promptText="닉네임" styleClass="label-custom-font">
-            <font>
-                <Font name="LG Smart UI Light" size="12.0" />
-            </font>
-        </TextField>
-        <Button id="checknickbtn" layoutX="990.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleNicknameCheck" prefHeight="50.0" prefWidth="100.0" styleClass="label-custom-font" text="중복확인">
+        <Button id="checknickbtn" layoutX="876.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleNicknameCheck" prefHeight="50.0" prefWidth="100.0" styleClass="label-custom-font" text="중복확인">
             <font>
                 <Font name="LG Smart UI Light" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="returnButton" layoutX="986.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="37.0" prefWidth="100.0" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER" />
+        <Button fx:id="returnButton" layoutX="872.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="37.0" prefWidth="100.0" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER" />
     </children>
 </AnchorPane>
