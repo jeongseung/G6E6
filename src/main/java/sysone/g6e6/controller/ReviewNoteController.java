@@ -29,7 +29,6 @@ public class ReviewNoteController implements Initializable {
 	private User user = UserSession.getInstance().getUser();
 	int userId = user.getId();
 
-
 	public List<Quiz> getQuizList(int id) throws Exception {
 		return reviewNoteService.getQuizList(id);
 	}

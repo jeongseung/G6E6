@@ -18,4 +18,10 @@ public class MistakeRepository {
 		pstmt.executeUpdate();
 		return mistake;
 	}
+
+	public void deleteByQuizId(Integer quizId) throws Exception {
+		PreparedStatement pstmt = conn.prepareStatement("delete from mistakes where quiz_id = ?");
+		pstmt.setInt(1, quizId);
+		pstmt.executeUpdate();
+	}
 }

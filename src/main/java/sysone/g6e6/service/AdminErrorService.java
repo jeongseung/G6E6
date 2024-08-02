@@ -10,6 +10,7 @@ import sysone.g6e6.model.Quiz;
 import sysone.g6e6.model.User;
 import sysone.g6e6.model.UserErrorReport;
 import sysone.g6e6.repository.ErrorReportRepository;
+import sysone.g6e6.repository.MistakeRepository;
 import sysone.g6e6.repository.QuizRepository;
 import sysone.g6e6.repository.SubjectRepository;
 import sysone.g6e6.repository.UserErrorReportRepository;
@@ -21,6 +22,7 @@ public class AdminErrorService {
 	private UserRepository userRepository = new UserRepository();
 	private QuizRepository quizRepository = new QuizRepository();
 	private SubjectRepository subjectRepository = new SubjectRepository();
+	private MistakeRepository mistakeRepository = new MistakeRepository();
 
 	public HashMap<String, List<?>> getAllErrors() throws Exception {
 		// 닉네임, 이메일 , 신고일시, 유형, 퀴즈, 삭제, 유지
@@ -59,6 +61,7 @@ public class AdminErrorService {
 	public void deleteErrorQuiz(Integer quizId, Integer errorReportId) throws Exception {
 		userErrorReportRepository.deleteUserErrorReport(errorReportId);
 		errorReportRepository.deleteErrorReport(errorReportId);
+		mistakeRepository.deleteByQuizId(quizId);
 		quizRepository.deleteQuizById(quizId);
 	}
 
