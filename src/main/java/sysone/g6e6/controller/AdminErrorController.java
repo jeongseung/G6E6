@@ -140,4 +140,9 @@ public class AdminErrorController implements Initializable {
 		errorAnchorPane.getChildren().clear();
 		start();
 	}
+
+	@FXML
+	public void handleReturnButton(ActionEvent e) {
+		FXUtil.getInstance().changeScene("AdminMainPage");
+	}
 }
