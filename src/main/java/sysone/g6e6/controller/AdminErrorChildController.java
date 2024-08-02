@@ -42,7 +42,7 @@ public class AdminErrorChildController {
 
 	@FXML
 	public void handleDeleteButton(ActionEvent e) {
-		curParent.deleteQuiz(curQuiz, curId);
+		curParent.deleteQuiz(curQuiz);
 	}
 
 	@FXML

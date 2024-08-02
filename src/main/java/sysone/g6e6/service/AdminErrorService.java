@@ -58,15 +58,18 @@ public class AdminErrorService {
 		return errorReportHashMap;
 	}
 
-	public void deleteErrorQuiz(Integer quizId, Integer errorReportId) throws Exception {
-		userErrorReportRepository.deleteUserErrorReport(errorReportId);
-		errorReportRepository.deleteErrorReport(errorReportId);
+	public void deleteErrorQuiz(Integer quizId) throws Exception {
+		List<ErrorReport> errorReports = errorReportRepository.findByQuizId(quizId);
+		for (ErrorReport errorReport : errorReports) {
+			userErrorReportRepository.deleteUserErrorReport(errorReport.getId());
+		}
+		errorReportRepository.deleteByQuizId(quizId);
 		mistakeRepository.deleteByQuizId(quizId);
 		quizRepository.deleteQuizById(quizId);
 	}
 
 	public void revokeErrorQuiz(Integer errorReportId) throws Exception {
 		userErrorReportRepository.deleteUserErrorReport(errorReportId);
-		errorReportRepository.deleteErrorReport(errorReportId);
+		errorReportRepository.deleteByErrorReportId(errorReportId);
 	}
 }
