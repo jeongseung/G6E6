@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import sysone.g6e6.model.PlayRecord;
 import sysone.g6e6.service.MyPageService;
 import sysone.g6e6.util.FXUtil;
@@ -38,11 +39,18 @@ public class MyPageController implements Initializable {
 	private int curMonth = curDate.getMonthValue();
 	private DayOfWeek firstDay = curDate.withDayOfMonth(1).getDayOfWeek();
 	private boolean isInitiated = false;
-
 	private List<PlayRecord> myMonthlyRecord;
+
+	private String fontPath = getClass().getResource("/sysone/g6e6/fonts/Pretendard-Regular.ttf").toExternalForm();
+	private Font customFont = Font.loadFont(fontPath, 20);
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		nicknameLabel.setFont(customFont);
+		emailLabel.setFont(customFont);
+		calendarTitleLabel.setFont(customFont);
+		calanderMonthLabel.setFont(customFont);
+		calendarCountLabel.setFont(customFont);
 		nextButton.setVisible(false);
 		nicknameLabel.setText("닉네임 : " + userSession.getUser().getNickname());
 		emailLabel.setText("이메일 : " + userSession.getUser().getEmail());

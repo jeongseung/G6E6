@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import sysone.g6e6.model.Quiz;
 import sysone.g6e6.model.Subject;
 import sysone.g6e6.service.QuizSubmitService;
@@ -25,8 +26,13 @@ public class QuizSubmitController implements Initializable {
 	@FXML
 	private TextArea quizTextArea;
 
+	private String fontPath = getClass().getResource("/sysone/g6e6/fonts/Pretendard-Regular.ttf").toExternalForm();
+	private Font customFont = Font.loadFont(fontPath, 20);
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		answerTextField.setFont(customFont);
+		quizTextArea.setFont(customFont);
 		List<String> subjectContentList = new ArrayList<>();
 		subjectChoiceBox.setValue("----분야 선택----");
 		try {
