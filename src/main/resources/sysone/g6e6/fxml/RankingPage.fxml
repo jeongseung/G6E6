@@ -1,74 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-
-<AnchorPane prefHeight="850.0" prefWidth="1575.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.RankingController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="850.0" prefWidth="1500.0" stylesheets="@../styles/style.css"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sysone.g6e6.controller.RankingController">
     <children>
-        <Text layoutX="6.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-custom-font" text="랭킹" textAlignment="CENTER" wrappingWidth="1568.3999999999999" AnchorPane.topAnchor="30.0">
+        <Text layoutX="6.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-custom-font"
+              text="랭킹" textAlignment="CENTER" wrappingWidth="1568.3999999999999" AnchorPane.topAnchor="30.0">
             <font>
-                <Font size="17.0" />
+                <Font size="17.0"/>
             </font>
         </Text>
-        <ScrollPane layoutX="7.0" layoutY="6.0" prefHeight="690.0" prefWidth="662.0" style="-fx-background-color: #667799;" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="80.0">
+        <ScrollPane layoutX="7.0" layoutY="6.0" prefHeight="690.0" prefWidth="662.0"
+                    style="-fx-background-color: #667799;" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="80.0">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="650.0" style="-fx-background-color: #667799;">
-               <children>
-                  <AnchorPane fx:id="parentPane" prefHeight="200.0" prefWidth="500.0" style="-fx-background-color: #667799;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
-                  </AnchorPane>
-               </children></AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="650.0"
+                            style="-fx-background-color: #667799;">
+                    <children>
+                        <AnchorPane fx:id="parentPane" prefHeight="200.0" prefWidth="500.0"
+                                    style="-fx-background-color: #667799;" AnchorPane.bottomAnchor="30.0"
+                                    AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0"
+                                    AnchorPane.topAnchor="30.0">
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
             </content>
         </ScrollPane>
-        <AnchorPane layoutX="836.0" layoutY="3.0" prefHeight="322.0" prefWidth="653.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #667799; -fx-border-width: 5; -fx-border-radius: 15; -fx-background-radius: 17;" AnchorPane.leftAnchor="836.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
+        <AnchorPane layoutX="836.0" layoutY="3.0" prefHeight="322.0" prefWidth="653.0"
+                    style="-fx-background-color: #FFFFFF; -fx-border-color: #667799; -fx-border-width: 5; -fx-border-radius: 15; -fx-background-radius: 17;"
+                    AnchorPane.leftAnchor="836.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
             <children>
-                <Label fx:id="hideSubjectLabel" layoutX="225.0" layoutY="284.0" styleClass="label-custom-font" text="문제 유형을 선택해주세요" textFill="RED" AnchorPane.bottomAnchor="15.0" />
-                <Label fx:id="subjectLabel1" alignment="CENTER" layoutX="15.0" layoutY="90.0" prefHeight="50.0" prefWidth="620.0" styleClass="label-custom-font" text="정보처리기사">
+                <Label fx:id="hideSubjectLabel" layoutX="225.0" layoutY="284.0" styleClass="label-custom-font"
+                       text="문제 유형을 선택해주세요" textFill="RED" AnchorPane.bottomAnchor="15.0"/>
+                <Label fx:id="subjectLabel1" alignment="CENTER" layoutX="15.0" layoutY="90.0" prefHeight="50.0"
+                       prefWidth="620.0" styleClass="label-custom-font" text="정보처리기사">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Label>
-                <Label fx:id="subjectLabel2" alignment="CENTER" layoutX="16.0" layoutY="177.0" prefHeight="50.0" prefWidth="620.0" styleClass="label-custom-font" text="SQLD">
+                <Label fx:id="subjectLabel2" alignment="CENTER" layoutX="16.0" layoutY="177.0" prefHeight="50.0"
+                       prefWidth="620.0" styleClass="label-custom-font" text="SQLD">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Label>
-                <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="24.0" prefWidth="622.0" styleClass="label-custom-font" text="문제유형" textAlignment="CENTER">
+                <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="24.0" prefWidth="622.0"
+                       styleClass="label-custom-font" text="문제유형" textAlignment="CENTER">
                     <font>
-                        <Font size="20.0" />
+                        <Font size="20.0"/>
                     </font>
                 </Label>
-                <Line endX="498.4000244140625" fill="#667799" layoutX="126.0" layoutY="14.0" opacity="0.35" startX="-100.0" stroke="#667799" strokeWidth="2.0" AnchorPane.topAnchor="40.0" />
+                <Line endX="498.4000244140625" fill="#667799" layoutX="126.0" layoutY="14.0" opacity="0.35"
+                      startX="-100.0" stroke="#667799" strokeWidth="2.0" AnchorPane.topAnchor="40.0"/>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="1320.0" layoutY="695.0" prefHeight="321.0" prefWidth="653.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 17; -fx-border-color: #667799; -fx-border-width: 5; -fx-border-radius: 15;" AnchorPane.bottomAnchor="80.0" AnchorPane.rightAnchor="80.0">
+        <AnchorPane layoutX="1320.0" layoutY="695.0" prefHeight="321.0" prefWidth="653.0"
+                    style="-fx-background-color: #FFFFFF; -fx-background-radius: 17; -fx-border-color: #667799; -fx-border-width: 5; -fx-border-radius: 15;"
+                    AnchorPane.leftAnchor="836.0" AnchorPane.bottomAnchor="80.0" AnchorPane.rightAnchor="80.0">
             <children>
-                <Label fx:id="difficultyLabel1" alignment="CENTER" layoutX="21.0" layoutY="81.0" prefHeight="35.0" prefWidth="609.0" styleClass="label-custom-font" text="쉬움">
+                <Label fx:id="difficultyLabel1" alignment="CENTER" layoutX="21.0" layoutY="81.0" prefHeight="35.0"
+                       prefWidth="609.0" styleClass="label-custom-font" text="쉬움">
                     <font>
-                        <Font size="15.0" />
+                        <Font size="15.0"/>
                     </font>
                 </Label>
-                <Label fx:id="difficultyLabel2" alignment="CENTER" layoutX="20.0" layoutY="145.0" prefHeight="35.0" prefWidth="610.0" styleClass="label-custom-font" text="보통">
+                <Label fx:id="difficultyLabel2" alignment="CENTER" layoutX="20.0" layoutY="145.0" prefHeight="35.0"
+                       prefWidth="610.0" styleClass="label-custom-font" text="보통">
                     <font>
-                        <Font size="15.0" />
+                        <Font size="15.0"/>
                     </font>
                 </Label>
-                <Label fx:id="difficultyLabel3" alignment="CENTER" layoutX="20.0" layoutY="211.0" prefHeight="35.0" prefWidth="610.0" styleClass="label-custom-font" text="어려움">
+                <Label fx:id="difficultyLabel3" alignment="CENTER" layoutX="20.0" layoutY="211.0" prefHeight="35.0"
+                       prefWidth="610.0" styleClass="label-custom-font" text="어려움">
                     <font>
-                        <Font size="15.0" />
+                        <Font size="15.0"/>
                     </font>
                 </Label>
-                <Label fx:id="hideDifficultyLabel" layoutX="237.0" layoutY="193.60000000000002" styleClass="label-custom-font" text="난이도를 선택해주세요" textFill="RED" AnchorPane.bottomAnchor="15.0" />
-                <Label alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="24.0" prefWidth="622.0" text="난이도" textAlignment="CENTER">
+                <Label fx:id="hideDifficultyLabel" layoutX="237.0" layoutY="193.60000000000002"
+                       styleClass="label-custom-font" text="난이도를 선택해주세요" textFill="RED" AnchorPane.bottomAnchor="15.0"/>
+                <Label alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="24.0" prefWidth="622.0" text="난이도"
+                       textAlignment="CENTER">
                     <font>
-                        <Font size="20.0" />
+                        <Font size="20.0"/>
                     </font>
                 </Label>
-            <Line endX="498.4000244140625" fill="#667799" layoutX="127.0" layoutY="43.0" opacity="0.35" startX="-100.0" stroke="#667799" strokeWidth="2.0" AnchorPane.topAnchor="42.0" />
+                <Line endX="498.4000244140625" fill="#667799" layoutX="127.0" layoutY="43.0" opacity="0.35"
+                      startX="-100.0" stroke="#667799" strokeWidth="2.0" AnchorPane.topAnchor="42.0"/>
             </children>
         </AnchorPane>
     </children>
-    <Button fx:id="returnButton" layoutX="1359.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="40.0" prefWidth="120.0" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER" />
+    <Button fx:id="returnButton" layoutX="1359.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleReturnButton"
+            prefHeight="40.0" prefWidth="120.0" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER"/>
 
 </AnchorPane>
