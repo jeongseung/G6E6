@@ -1,78 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sysone.g6e6.controller.AdminErrorController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" styleClass="label-custom-font" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.AdminErrorController">
     <children>
-        <Label alignment="CENTER" prefHeight="49.0" prefWidth="600.0"
-               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10px;" text="🔔오류 신고 목록🔔"
-               textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="450.0" layoutY="46.0" prefHeight="49.0" prefWidth="600.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10px;" text="🔔 오류 신고 목록 🔔" textAlignment="CENTER" textFill="#667799" AnchorPane.topAnchor="50.0">
             <font>
-                <Font name="LG Smart UI Regular" size="12.0"/>
+                <Font name="LG Smart UI Regular" size="12.0" />
             </font>
         </Label>
-        <ScrollPane fx:id="errorScrollPane" layoutX="8.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0"
-                    AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0"
-                    AnchorPane.topAnchor="60.0">
+        <ScrollPane fx:id="errorScrollPane" layoutX="145.0" layoutY="115.0" prefHeight="570.0" prefWidth="1272.0" style="-fx-border-color: #667799;" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="84.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="115.0">
             <content>
-                <AnchorPane minHeight="300.0" minWidth="540.0">
+                <AnchorPane minHeight="300.0" minWidth="540.0" prefHeight="566.0" prefWidth="1323.0">
                     <children>
-                        <HBox minHeight="20.0" prefHeight="20.0" prefWidth="540.0" AnchorPane.leftAnchor="0.0"
-                              AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="errorAnchorPane" layoutX="-2.0" layoutY="37.0" prefHeight="530.0" prefWidth="1327.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="37.0" />
+                        <HBox layoutX="-2.0" layoutY="-1.0" minHeight="40.0" prefHeight="40.0" prefWidth="1333.0" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="-1.0">
                             <children>
-                                <Label alignment="CENTER" minHeight="20.0" minWidth="60.0"
-                                       style="-fx-border-width: 1; -fx-border-color: #000000;" text="닉네임"/>
-                                <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" minHeight="20.0"
-                                       minWidth="120.0" style="-fx-border-width: 1; -fx-border-color: #000000;"
-                                       text="이메일"/>
-                                <Label alignment="CENTER" layoutX="39.0" layoutY="10.0" minHeight="20.0" minWidth="70.0"
-                                       style="-fx-border-width: 1; -fx-border-color: #000000;" text="신고일시"/>
-                                <Label alignment="CENTER" layoutX="67.0" layoutY="10.0" minHeight="20.0" minWidth="90.0"
-                                       style="-fx-border-width: 1; -fx-border-color: #000000;" text="문제유형"/>
-                                <Label alignment="CENTER" layoutX="96.0" layoutY="10.0" minHeight="20.0" minWidth="50.0"
-                                       style="-fx-border-width: 1; -fx-border-color: #000000;" text="신고횟수"/>
-                                <Label alignment="CENTER" layoutX="250.0" layoutY="10.0" minHeight="20.0"
-                                       minWidth="60.0" style="-fx-border-width: 1; -fx-border-color: #000000;"
-                                       text="문제확인"/>
-                                <Label alignment="CENTER" layoutX="178.0" layoutY="10.0" minHeight="20.0"
-                                       minWidth="40.0" style="-fx-border-width: 1; -fx-border-color: #000000;"
-                                       text="삭제"/>
-                                <Label alignment="CENTER" minHeight="20.0" minWidth="40.0"
-                                       style="-fx-border-width: 1; -fx-border-color: #000000;" text="유지"/>
+                                <Label alignment="CENTER" minHeight="40.0" minWidth="250.0" style="-fx-border-width: 1; -fx-border-color: #667799; -fx-font-size: 20;" text="닉네임" textFill="#667799" />
+                                <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="273.0" style="-fx-border-width: 1; -fx-border-color: #667799;" text="이메일" textFill="#667799" />
+                                <Label alignment="CENTER" layoutX="39.0" layoutY="10.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="180.0" style="-fx-border-width: 1; -fx-border-color: #667799;" text="신고일시" textFill="#667799" />
+                                <Label alignment="CENTER" layoutX="67.0" layoutY="10.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="185.0" style="-fx-border-width: 1; -fx-border-color: #667799;" text="문제유형" textFill="#667799" />
+                                <Label alignment="CENTER" layoutX="96.0" layoutY="10.0" minHeight="40.0" minWidth="50.0" prefHeight="40.0" prefWidth="99.0" style="-fx-border-width: 1; -fx-border-color: #667799;" text="신고횟수" textFill="#667799" />
+                                <Label alignment="CENTER" layoutX="250.0" layoutY="10.0" minHeight="40.0" minWidth="120.0" prefHeight="66.0" prefWidth="120.0" style="-fx-border-width: 1; -fx-border-color: #667799;" text="문제확인" textFill="#667799" />
+                                <Label alignment="CENTER" layoutX="178.0" layoutY="10.0" minHeight="40.0" minWidth="120.0" style="-fx-border-width: 1; -fx-border-color: #667799;" text="삭제" textFill="#667799" />
+                                <Label alignment="CENTER" minHeight="40.0" minWidth="120.0" prefHeight="40.0" prefWidth="114.0" style="-fx-border-width: 1; -fx-border-color: #667799;" text="유지" textFill="#667799" />
                             </children>
                         </HBox>
-                        <AnchorPane fx:id="errorAnchorPane" prefHeight="200.0" prefWidth="200.0"
-                                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0"/>
                     </children>
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <Button layoutX="506.0" onAction="#handleReloadButton" layoutY="360.0" mnemonicParsing="false" text="새로고침"/>
-        <AnchorPane fx:id="quizAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Button layoutX="1321.0" layoutY="699.0" mnemonicParsing="false" onAction="#handleReloadButton" style="-fx-background-color: #667799;" text="새로고침" textFill="WHITE" />
+        <AnchorPane fx:id="quizAnchorPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a8a8a" height="400.0" opacity="0.38" stroke="BLACK"
-                           strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#667799" height="300.0" layoutX="100.0" layoutY="50.0"
-                           stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="400.0"/>
-                <Button fx:id="okButton" onAction="#handleOkButton" layoutX="280.0" layoutY="310.0"
-                        mnemonicParsing="false" text="확인"
-                        AnchorPane.bottomAnchor="70.0"/>
-                <Label fx:id="problemLabel" layoutX="100.0" layoutY="86.0" prefHeight="180.0" prefWidth="400.0"
-                       text="Label" AnchorPane.bottomAnchor="120.0"/>
-                <Label fx:id="answerLabel" layoutX="100.0" layoutY="282.0" prefHeight="14.0" prefWidth="400.0"
-                       text="Label" AnchorPane.bottomAnchor="100.0"/>
-                <Label fx:id="infoLabel" layoutX="100.0" layoutY="61.0" prefHeight="14.0" prefWidth="400.0" text="Label"
-                       AnchorPane.bottomAnchor="320.0"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a8a8a" height="510.0" layoutX="407.0" layoutY="201.0" opacity="0.38" stroke="BLACK" strokeType="INSIDE" width="705.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="407.0" AnchorPane.rightAnchor="388.0" AnchorPane.topAnchor="201.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#667799" height="442.0" layoutX="450.0" layoutY="235.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="620.0" />
+                <Button fx:id="okButton" layoutX="931.0" layoutY="619.0" minHeight="40.0" minWidth="120.0" mnemonicParsing="false" onAction="#handleOkButton" style="-fx-background-color: #ffffff;" text="확인" textFill="#667799" AnchorPane.bottomAnchor="141.0" />
+                <Label fx:id="problemLabel" layoutX="560.0" layoutY="348.0" prefHeight="180.0" prefWidth="400.0" text="Label" textFill="WHITE" AnchorPane.bottomAnchor="272.0" />
+                <Label fx:id="answerLabel" layoutX="560.0" layoutY="550.0" prefHeight="14.0" prefWidth="400.0" text="Label" textFill="WHITE" AnchorPane.bottomAnchor="226.0" />
+                <Label fx:id="infoLabel" layoutX="560.0" layoutY="292.0" prefHeight="14.0" prefWidth="400.0" text="Label" textFill="WHITE" AnchorPane.bottomAnchor="484.0" />
             </children>
         </AnchorPane>
     </children>

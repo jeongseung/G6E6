@@ -75,7 +75,7 @@ public class AdminMainController {
 
 	@FXML
 	public void handleGoToErrorReports(ActionEvent event) {
-		fx.changeScene("ErrorReportPage");
+		fx.changeScene("AdminErrorPage");
 	}
 
 	@FXML
