@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sysone.g6e6.service.SignUpService;
 import sysone.g6e6.util.FXUtil;
@@ -14,9 +15,9 @@ public class SignUpController {
 	@FXML
 	private TextField emailField;
 	@FXML
-	private TextField passwordField;
+	private PasswordField passwordField;
 	@FXML
-	private TextField confirmPasswordField;
+	private PasswordField confirmPasswordField;
 	@FXML
 	private TextField nicknameField;
 
