@@ -59,9 +59,9 @@ public class AdminErrorController implements Initializable {
 				AdminErrorChildController aecc = loader.getController();
 				aecc.init(nickname, email, date, subjectContent, countMap.get(quiz.getId()), quiz, id, this);
 				errorAnchorPane.getChildren().add(childBlock);
-				childBlock.setLayoutY(20 * i);
-				if (20 * (i + 1) > errorAnchorPane.getHeight()) {
-					errorAnchorPane.setPrefHeight(20 * i);
+				childBlock.setLayoutY(40 * i);
+				if (40 * (i + 1) > errorAnchorPane.getHeight()) {
+					errorAnchorPane.setPrefHeight(40 * i);
 				}
 			}
 		} catch (Exception e) {
