@@ -13,12 +13,14 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 
-
-
 public class RankingChildController {
 
     @FXML
     private Label rankLabel;
+    @FXML
+    private Label nicknameLabel;
+    @FXML
+    private Label solveTimeLabel;
     @FXML
     private AnchorPane childPane;
 
@@ -31,9 +33,15 @@ public class RankingChildController {
     }
 
     public void setRankLabel(int rank, String nickname, double solveTime) {
-        String formattedText = String.format("%-15s %-50s %-15s", rank + ".", nickname, solveTime + " 초");
-        rankLabel.setText(formattedText);
+        // Set values to the labels
+        rankLabel.setText(rank + ".");
+        nicknameLabel.setText(nickname.length() > 10 ? nickname.substring(0, 10) : nickname);
+        solveTimeLabel.setText(String.format("%.2f 초", solveTime));
+
+        // Apply CSS styles
         rankLabel.getStyleClass().add("label-custom-font");
+        nicknameLabel.getStyleClass().add("label-custom-font");
+        solveTimeLabel.getStyleClass().add("label-custom-font");
     }
 
     public void setRankColor(int rank) {
