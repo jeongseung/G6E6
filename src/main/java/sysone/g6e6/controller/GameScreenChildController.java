@@ -49,9 +49,9 @@ public class GameScreenChildController {
 		AnchorPane.setLeftAnchor(probTextFlow, 25.0);
 
 		// Debugging prints
-		System.out.println("Index TextFlow Height: " + idxTextFlowHeight);
-		System.out.println("Problem TextFlow Height: " + probTextFlowHeight);
-		System.out.println("AnchorPane Height: " + childAnchorPane.getPrefHeight());
+		// System.out.println("Index TextFlow Height: " + idxTextFlowHeight);
+		// System.out.println("Problem TextFlow Height: " + probTextFlowHeight);
+		// System.out.println("AnchorPane Height: " + childAnchorPane.getPrefHeight());
 	}
 
 	// AnchorPane's height getter method
