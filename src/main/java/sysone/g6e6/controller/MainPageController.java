@@ -12,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import sysone.g6e6.model.Notification;
 import sysone.g6e6.model.User;
 import sysone.g6e6.service.MainPageService;
@@ -25,11 +26,11 @@ public class MainPageController implements Initializable {
 	@FXML
 	private Label welcomeLabel;
 	@FXML
-	private Label noticeLabel;
-	@FXML
 	private Button noticeButton1, noticeButton2, noticeButton3, noticeButton4, noticeButton5, noticeButton6, noticeButton7, noticeButton8;
 	@FXML
 	private Group noticeGroup;
+	@FXML
+	private TextFlow noticeTextFlow;
 
 	private MainPageService mainPageService;
 	private List<Notification> latestNotifications;
@@ -93,66 +94,23 @@ public class MainPageController implements Initializable {
 		}
 	}
 
-	@FXML
-	public void handleNotice1(ActionEvent event) {
-		if (latestNotifications.size() > 0) {
-			noticeLabel.setText(latestNotifications.get(0).getContent());
-			noticeGroup.setVisible(true);
-		}
+	public void updateNoticeText(String newText) {
+		// 기존 텍스트를 모두 제거
+		noticeTextFlow.getChildren().clear();
+
+		// 새로운 텍스트 추가
+		Text text = new Text(newText);
+		noticeTextFlow.getChildren().add(text);
 	}
 
 	@FXML
-	public void handleNotice2(ActionEvent event) {
-		if (latestNotifications.size() > 1) {
-			noticeLabel.setText(latestNotifications.get(1).getContent());
-			noticeGroup.setVisible(true);
-		}
-	}
+	public void handleNotice(ActionEvent event) {
+		Button sourceButton = (Button) event.getSource();
+		String buttonId = sourceButton.getId();
+		int index = Integer.parseInt(buttonId.replace("noticeButton", "")) - 1; // ID에서 숫자를 추출하여 인덱스로 변환
 
-	@FXML
-	public void handleNotice3(ActionEvent event) {
-		if (latestNotifications.size() > 2) {
-			noticeLabel.setText(latestNotifications.get(2).getContent());
-			noticeGroup.setVisible(true);
-		}
-	}
-
-	@FXML
-	public void handleNotice4(ActionEvent event) {
-		if (latestNotifications.size() > 3) {
-			noticeLabel.setText(latestNotifications.get(3).getContent());
-			noticeGroup.setVisible(true);
-		}
-	}
-
-	@FXML
-	public void handleNotice5(ActionEvent event) {
-		if (latestNotifications.size() > 4) {
-			noticeLabel.setText(latestNotifications.get(4).getContent());
-			noticeGroup.setVisible(true);
-		}
-	}
-
-	@FXML
-	public void handleNotice6(ActionEvent event) {
-		if (latestNotifications.size() > 5) {
-			noticeLabel.setText(latestNotifications.get(5).getContent());
-			noticeGroup.setVisible(true);
-		}
-	}
-
-	@FXML
-	public void handleNotice7(ActionEvent event) {
-		if (latestNotifications.size() > 6) {
-			noticeLabel.setText(latestNotifications.get(6).getContent());
-			noticeGroup.setVisible(true);
-		}
-	}
-
-	@FXML
-	public void handleNotice8(ActionEvent event) {
-		if (latestNotifications.size() > 7) {
-			noticeLabel.setText(latestNotifications.get(7).getContent());
+		if (index >= 0 && index < latestNotifications.size()) {
+			updateNoticeText(latestNotifications.get(index).getContent());
 			noticeGroup.setVisible(true);
 		}
 	}

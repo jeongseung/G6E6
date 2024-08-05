@@ -20,24 +20,22 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <ImageView fx:id="profileImageView" fitHeight="50" fitWidth="50" layoutX="1379.0" layoutY="57.0" style="-fx-background-radius: 25;" />
-        <Button fx:id="noticeButton1" alignment="CENTER" layoutX="296.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleNotice1" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="1번 공지글" textAlignment="JUSTIFY" textFill="WHITE" visible="false" />
-        <Button fx:id="noticeButton2" alignment="CENTER" layoutX="298.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleNotice2" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="2번 공지글" textFill="WHITE" visible="false" />
-        <Button fx:id="noticeButton3" alignment="CENTER" layoutX="298.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleNotice3" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="3번 공지글" textFill="WHITE" visible="false" />
-        <Button fx:id="noticeButton4" alignment="CENTER" layoutX="298.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleNotice4" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="4번 공지글" textFill="WHITE" visible="false" />
-        <Button fx:id="noticeButton5" alignment="CENTER" layoutX="298.0" layoutY="483.0" mnemonicParsing="false" onAction="#handleNotice5" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="5번 공지글" textFill="WHITE" visible="false" />
-        <Button fx:id="noticeButton6" alignment="CENTER" layoutX="298.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleNotice6" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="6번 공지글" textFill="WHITE" visible="false" />
-        <Button fx:id="noticeButton7" alignment="CENTER" layoutX="298.0" layoutY="615.0" mnemonicParsing="false" onAction="#handleNotice7" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="7번 공지글" textFill="WHITE" visible="false" />
-        <Button fx:id="noticeButton8" alignment="CENTER" layoutX="298.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleNotice8" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="8번 공지글" textFill="WHITE" visible="false" />
+        <ImageView fitHeight="50" fitWidth="50" layoutX="1379.0" layoutY="57.0" style="-fx-background-radius: 25;" />
+        <Button fx:id="noticeButton1" alignment="CENTER" layoutX="296.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleNotice" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="1번 공지글" textAlignment="JUSTIFY" textFill="WHITE" visible="false" />
+        <Button fx:id="noticeButton2" alignment="CENTER" layoutX="298.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleNotice" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="2번 공지글" textFill="WHITE" visible="false" />
+        <Button fx:id="noticeButton3" alignment="CENTER" layoutX="298.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleNotice" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="3번 공지글" textFill="WHITE" visible="false" />
+        <Button fx:id="noticeButton4" alignment="CENTER" layoutX="298.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleNotice" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="4번 공지글" textFill="WHITE" visible="false" />
+        <Button fx:id="noticeButton5" alignment="CENTER" layoutX="298.0" layoutY="483.0" mnemonicParsing="false" onAction="#handleNotice" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="5번 공지글" textFill="WHITE" visible="false" />
+        <Button fx:id="noticeButton6" alignment="CENTER" layoutX="298.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleNotice" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="6번 공지글" textFill="WHITE" visible="false" />
+        <Button fx:id="noticeButton7" alignment="CENTER" layoutX="298.0" layoutY="615.0" mnemonicParsing="false" onAction="#handleNotice" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="7번 공지글" textFill="WHITE" visible="false" />
+        <Button fx:id="noticeButton8" alignment="CENTER" layoutX="298.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleNotice" prefHeight="40.0" prefWidth="572.0" style="-fx-background-color: #667799;" styleClass="label-custom-font" text="8번 공지글" textFill="WHITE" visible="false" />
         <Group fx:id="noticeGroup" layoutX="342.0" layoutY="294.0" styleClass="label-custom-font" visible="false">
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f5fd" height="367.0" layoutX="8.0" layoutY="2.0" stroke="#d2ddf8" strokeType="INSIDE" strokeWidth="2.0" width="468.0" />
-                <Label fx:id="noticeLabel" alignment="TOP_LEFT" layoutX="41.0" layoutY="31.0" prefHeight="309.0" prefWidth="403.0" text="글내용">
-                    <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </padding>
-                </Label>
-                <Button fx:id="closeButton" layoutX="451.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleCloseButton" prefHeight="13.0" prefWidth="13.0" style="-fx-background-color: #667799;" text="X" textAlignment="CENTER" textFill="WHITE">
+                <TextFlow fx:id="noticeTextFlow" layoutX="41.0" layoutY="31.0" prefHeight="309.0" prefWidth="403.0">
+                    <Text text="글내용" />
+                </TextFlow>
+                <Button layoutX="451.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleCloseButton" prefHeight="13.0" prefWidth="13.0" style="-fx-background-color: #667799;" text="X" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="Arial" size="12.0" />
                     </font>
