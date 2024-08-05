@@ -1,15 +1,16 @@
 package sysone.g6e6.service;
 
+import java.util.List;
+
 import sysone.g6e6.model.Quiz;
 import sysone.g6e6.repository.ReviewNoteRepository;
-import java.util.List;
 
 public class ReviewNoteService {
 
-    private ReviewNoteRepository reviewNoteRepository = new ReviewNoteRepository();
+	private ReviewNoteRepository reviewNoteRepository = new ReviewNoteRepository();
 
-    public List<Quiz> getQuizList(int id) throws Exception {
+	public List<Quiz> getQuizList(int id) throws Exception {
 
-        return reviewNoteRepository.findAllQuizByUserId(id);
-    }
+		return reviewNoteRepository.findAllQuizByUserId(id);
+	}
 }

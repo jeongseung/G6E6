@@ -39,7 +39,6 @@ public class GameCreateController implements Initializable {
 			String subject_name = gameCreateChoiceBox1.getValue();
 			String diff = gameCreateChoiceBox2.getValue();
 			if (diff == "---난이도 선택---" || subject_name == "----분야 선택----") {
-				System.out.println("제대로 골라주세요");
 				throw ex;
 			}
 			FXMLLoader loader = FXUtil.getInstance().getLoader("GameScreen.fxml");

@@ -23,7 +23,6 @@ public class AdminErrorChildController {
 		Integer id,
 		AdminErrorController parent) {
 		Platform.runLater(() -> {
-			System.out.println(nickname);
 			nicknameLabel.setText(nickname);
 			emailLabel.setText(email);
 			dateLabel.setText(date.toLocalDate().toString());
