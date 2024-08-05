@@ -47,7 +47,6 @@ public class GameScreenChildController {
 		AnchorPane.setLeftAnchor(idxTextFlow, 25.0);
 		AnchorPane.setTopAnchor(probTextFlow, idxTextFlowHeight + 20);
 		AnchorPane.setLeftAnchor(probTextFlow, 25.0);
-
 	}
 
 	// AnchorPane's height getter method
