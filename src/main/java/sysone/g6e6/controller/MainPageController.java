@@ -105,7 +105,7 @@ public class MainPageController implements Initializable {
 
 	@FXML
 	public void handleNotice(ActionEvent event) {
-		Button sourceButton = (Button) event.getSource();
+		Button sourceButton = (Button)event.getSource();
 		String buttonId = sourceButton.getId();
 		int index = Integer.parseInt(buttonId.replace("noticeButton", "")) - 1; // ID에서 숫자를 추출하여 인덱스로 변환
 

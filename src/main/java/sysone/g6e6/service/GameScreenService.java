@@ -104,7 +104,6 @@ public class GameScreenService {
 						count_loop++;
 						continue;
 					}
-					// System.out.println("1. (" + x + ", " + y + ")에 " + word + "를 세로로 넣을거에요");
 					insertMap(word, false);
 					h_num++;
 					isVertical = !isVertical;
@@ -113,21 +112,17 @@ public class GameScreenService {
 					Iterator<int[]> iterator = h_visited.iterator();
 					while (iterator.hasNext()) {
 						int[] a = iterator.next();
-						// System.out.println("탐색좌표 : " + a[0] + ", " + a[1]);
 
 						if (word.startsWith(String.valueOf(map[a[0]][a[1]]))
 							&& (a[0] + word.length() - 1) < map.length) {
 							if (containArr(v_visited, a)) {
-								// System.out.println(a[0] + ", " + a[1] + "은 이미 세로칸에도 존재해요");
 								count_loop++;
 								break;
 							}
 							if (!checkMap(a, word, false, false)) {
-								// System.out.println("주변에 겹치는 문자가 존재해요");
 								count_loop++;
 								break;
 							}
-							// System.out.println("2. (" + a[0] + ", " + a[1] + ")에 " + word + "를 세로로 넣을거에요");
 							x = a[0];
 							y = a[1];
 							insertMap(word, false);
@@ -137,16 +132,13 @@ public class GameScreenService {
 							break;
 						} else if (word.endsWith(String.valueOf(map[a[0]][a[1]])) && (a[0] - word.length() + 1) >= 0) {
 							if (containArr(v_visited, a)) {
-								// System.out.println(a[0] + ", " + a[1] + "은 이미 세로칸에도 존재해요");
 								count_loop++;
 								break;
 							}
 							if (!checkMap(a, word, true, false)) {
-								// System.out.println("주변에 겹치는 문자가 존재해요");
 								count_loop++;
 								break;
 							}
-							// System.out.println("3. (" + a[0] + ", " + a[1] + ")에 " + word + "를 세로로 거꾸로 넣을거에요");
 							x = a[0];
 							y = a[1];
 							insertMap(word, true);
@@ -191,7 +183,6 @@ public class GameScreenService {
 						count_loop++;
 						continue;
 					}
-					// System.out.println("4. (" + x + ", " + y + ")에 " + word + "를 가로로 넣을거에요");
 					insertMap(word, false);
 					h_num++;
 					isVertical = !isVertical;
@@ -201,20 +192,16 @@ public class GameScreenService {
 					while (iterator.hasNext()) {
 						int[] a = iterator.next();
 						List<int[]> ck_cord = new ArrayList<>();
-						// System.out.println("탐색좌표 : " + a[0] + ", " + a[1]);
 						if (word.startsWith(String.valueOf(map[a[0]][a[1]]))
 							&& (a[1] + word.length() - 1) < map.length) {
 							if (containArr(h_visited, a)) {
-								// System.out.println(a[0] + ", " + a[1] + "은 이미 가로칸에도 존재해요");
 								count_loop++;
 								break;
 							}
 							if (!checkMap(a, word, false, false)) {
-								// System.out.println("주변에 겹치는 문자가 존재해요");
 								count_loop++;
 								break;
 							}
-							// System.out.println("5. (" + a[0] + ", " + a[1] + ")에 " + word + "를 가로로 넣을거에요");
 							x = a[0];
 							y = a[1];
 							insertMap(word, false);
@@ -224,16 +211,13 @@ public class GameScreenService {
 							break;
 						} else if (word.endsWith(String.valueOf(map[a[0]][a[1]])) && (a[1] - word.length() + 1) >= 0) {
 							if (containArr(h_visited, a)) {
-								// System.out.println(a[0] + ", " + (a[1]) + "은 이미 가로칸에도 존재해요");
 								count_loop++;
 								break;
 							}
 							if (!checkMap(a, word, true, false)) {
-								// System.out.println("주변에 겹치는 문자가 존재해요");
 								count_loop++;
 								break;
 							}
-							// System.out.println("6. (" + a[0] + ", " + a[1] + ")에 " + word + "를 가로로 거꾸로 넣을거에요");
 							x = a[0];
 							y = a[1];
 							insertMap(word, true);
@@ -249,20 +233,16 @@ public class GameScreenService {
 				}
 			}
 		}
-		// showMap(map);
 	}
 
 	private void showVisited(boolean isV) {
 		List<int[]> visited;
 		visited = isV ? v_visited : h_visited;
 		for (int[] cord : visited) {
-			// System.out.print(Arrays.toString(cord));
 		}
-		// System.out.println();
 	}
 
 	private boolean checkMap(int[] start_cord, String word, boolean isReverse, boolean resolveLoop) {
-		// System.out.println(word+start_cord[0]+", "+start_cord[1]);
 
 		List<int[]> cord_map = new ArrayList<>();
 		cord_map.add(
@@ -279,7 +259,6 @@ public class GameScreenService {
 		}
 		if (isVertical) {
 			if (!isReverse) {
-				// for (int n = resolveLoop ? 0 : 1; n < len; n++) {
 				for (int n = 0; n < len; n++) {
 					if (map[start_cord[0] + n][start_cord[1]] != word.charAt(n)) {
 						cord_map.add(new int[] {start_cord[0] + n, start_cord[1] + 1});
@@ -288,7 +267,6 @@ public class GameScreenService {
 					}
 				}
 			} else {
-				// for (int n = resolveLoop ? 0 : 1; n < len; n++) {
 				for (int n = 0; n < len; n++) {
 					if (map[start_cord[0] - n][start_cord[1]] != word.charAt(n)) {
 						cord_map.add(new int[] {start_cord[0] - n, start_cord[1] + 1});
@@ -299,7 +277,6 @@ public class GameScreenService {
 			}
 		} else {
 			if (!isReverse) {
-				// for (int n = resolveLoop ? 0 : 1; n < len; n++) {
 				for (int n = 0; n < len; n++) {
 					if (map[start_cord[0]][start_cord[1] + n] != word.charAt(n)) {
 						cord_map.add(new int[] {start_cord[0] + 1, start_cord[1] + n});
@@ -308,7 +285,6 @@ public class GameScreenService {
 					}
 				}
 			} else {
-				// for (int n = resolveLoop ? 0 : 1; n < len; n++) {
 				for (int n = 0; n < len; n++) {
 					if (map[start_cord[0]][start_cord[1] - n] != word.charAt(n)) {
 						cord_map.add(new int[] {start_cord[0] + 1, start_cord[1] - n});
@@ -319,15 +295,9 @@ public class GameScreenService {
 			}
 		}
 		for (int[] cord : cord_map) {
-			if (resolveLoop) {
-				// System.out.println(cord[0] + ", " + cord[1]);
-			}
 			if (containArr(v_visited, cord) || containArr(h_visited, cord)) {
 				return false;
 			}
-		}
-		if (resolveLoop) {
-			// System.out.println("flag : "+word);
 		}
 		return true;
 	}
@@ -364,7 +334,6 @@ public class GameScreenService {
 			resultVerticalCoord.add(new int[] {isReverse ? i + 1 : x, y});
 			resultVerticalQuiz.add(curQuiz);
 		}
-		// System.out.println(h_num + v_num);
 		showMap(map);
 	}
 
@@ -390,9 +359,7 @@ public class GameScreenService {
 			}
 			System.out.println();
 		}
-		// System.out.println("현재 V_visited");
 		showVisited(true);
-		// System.out.println("현재 H_visited");
 		showVisited(false);
 	}
 

@@ -38,11 +38,10 @@ public class LoginController {
 
 		if (message != null && message.equals("Login success")) {
 			showAlert(Alert.AlertType.INFORMATION, "로그인 성공", "성공적으로 로그인했습니다!");
-			// System.out.println("로그인 성공");
+
 			FXUtil fx = FXUtil.getInstance();
 			User user = UserSession.getInstance().getUser();
 			String role = user.getRole();
-			System.out.println(role);
 			fx.changeScene(role.equals("admin") ? "AdminMainPage" : "MainPage");
 		} else {
 			showAlert(Alert.AlertType.ERROR, "로그인 실패", message);

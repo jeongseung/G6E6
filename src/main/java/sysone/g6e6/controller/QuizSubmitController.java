@@ -47,9 +47,9 @@ public class QuizSubmitController implements Initializable {
 	public void submitQuiz(ActionEvent event) {
 		try {
 			Subject subject = quizSubmitService.getSubjectByContent(subjectChoiceBox.getValue());
-			Quiz quiz = quizSubmitService.createQuiz(subject.getId(), quizTextArea.getText(),
+			quizSubmitService.createQuiz(subject.getId(), quizTextArea.getText(),
 				answerTextField.getText());
-			System.out.println("1 quiz created.\n" + quiz.toString());
+
 			// 제출 성공 알림 뜨면 좋을 듯
 			FXUtil.getInstance().changeScene("MainPage");
 		} catch (Exception e) {

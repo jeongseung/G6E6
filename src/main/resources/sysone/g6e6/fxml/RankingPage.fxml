@@ -7,7 +7,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 <AnchorPane prefHeight="850.0" prefWidth="1500.0" stylesheets="@../styles/style.css"
             xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sysone.g6e6.controller.RankingController">
@@ -96,6 +95,6 @@
             </children>
         </AnchorPane>
     </children>
-    <Button fx:id="returnButton" layoutX="1359.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleReturnButton"
+    <Button layoutX="1359.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleReturnButton"
             prefHeight="40.0" prefWidth="120.0" styleClass="label-custom-font" text="돌아가기" textAlignment="CENTER"/>
 </AnchorPane>
