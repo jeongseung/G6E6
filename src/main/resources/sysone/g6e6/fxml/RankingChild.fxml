@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<AnchorPane fx:id="childPane" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sysone.g6e6.controller.RankingChildController">
+    <children>
+        <HBox fx:id="rankHBox" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+              AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+            <children>
+                <Label fx:id="rankLabel" prefWidth="50.0" text="Rank"/>
+                <Label fx:id="nicknameLabel" prefWidth="400.0" HBox.hgrow="ALWAYS" text="Nickname"/>
+                <Label fx:id="solveTimeLabel" prefWidth="100.0" text="Solve Time"/>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
