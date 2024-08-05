@@ -88,22 +88,14 @@ public class MyPageController implements Initializable {
 		} else if (curYear == LocalDate.now().getYear() && curMonth == LocalDate.now().getMonthValue()) {
 			nextButton.setVisible(false);
 		}
-		if (!checkPreviousMonth()) {
-			previousButton.setVisible(false);
-		} else {
-			previousButton.setVisible(true);
-		}
+		previousButton.setVisible(checkPreviousMonth());
 		calanderMonthLabel.setText(curYear + "년 " + curMonth + "월");
 		createMonthlyMap();
 	}
 
 	private void getMonthlyPlayRecord() {
 		try {
-			if (userSession.getUser() != null) {
-				myMonthlyRecord = myPageService.createRecordList(userSession.getUser().getId(), curYear, curMonth);
-			} else {
-				myMonthlyRecord = myPageService.createRecordList(1, curYear, curMonth);
-			}
+			myMonthlyRecord = myPageService.createRecordList(userSession.getUser().getId(), curYear, curMonth);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -158,7 +150,7 @@ public class MyPageController implements Initializable {
 
 	private boolean checkPreviousMonth() {
 		try {
-			return myPageService.getPreviousRecords(1, (curMonth - 1) > 0 ? curYear : curYear - 1, curMonth - 1);
+			return myPageService.getPreviousRecords(userSession.getUser().getId(), (curMonth - 1) > 0 ? curYear : curYear - 1, curMonth - 1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
